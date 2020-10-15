@@ -13,7 +13,7 @@ statement = operationList | ioStatement | ifStatement | whileStatement .
 # Operation
 operationList = operation ";" | operation ";" operationList .
 operation = simpleOperation | assignment .
-simpleOperation = identifier arithmeticOperator identifier .
+simpleOperation = identifier arithmeticOperator (const | string) | identifier arithmeticOperator identifier .
 
 # Assignment
 assignment = lhs assignmentOperator rhs | readStatement .
@@ -39,12 +39,12 @@ ifStatement = "if(" compoundCondition ") {" statementList "}" .
 whileStatement = "while(" compoundCondition ") {" statementList "}" .
 
 # Condition
-compoundCondition = condition | "(" condition ")" comparisonOperator "(" compoundCondition ")"
-condition = identifier comparisonOperator identifier .
+compoundCondition = condition | "(" compoundCondition ")" logicalOperator "(" compoundCondition ")"
+condition = identifier equalityOperator identifier .
 
 # Operators
 equalityOperator = "-lt" | "-le" | "-eq" | "-ne" | "-gt" | "-ge"
-comparisonOperator = "-and" | "-or" | "-not" .
+logicalOperator = "-and" | "-or" | "-not" .
 arithmeticOperator = "+" | "-" | "*" | "/" | "%" .
 assignmentOperator = "=" .
 

@@ -1,9 +1,6 @@
 import os
-
-
-class MutableInt:
-    def __init__(self, value):
-        self.value = value
+import utils
+import rules
 
 
 class Atom:
@@ -12,7 +9,7 @@ class Atom:
         self.value = value
 
 
-class Analyser:
+class OldAnalyser:
     def __init__(self, config, identifier_length=8, combined=True):
         self.__ids = []
         self.__constants = []
@@ -22,12 +19,16 @@ class Analyser:
         self.__combined = True
         self.__reset(None)
 
-# region Private
     def __reset(self, source_code):
         self.__source_code = source_code
         self.__atoms = []
 
-# region Handle ID CONST
+    def __is_end_line(self, line, start):
+        if start.value == len(line):
+            return True
+
+        return False
+
     def __add_id_const(self, value, is_id=True):
         if self.__combined:
             self.__all.append(value)
@@ -56,10 +57,6 @@ class Analyser:
 
         return None
 
-# endregion
-
-# region Lexical Rules
-
     def __is_id(self, line, start):
         if self.__is_end_line(line, start):
             return []
@@ -67,8 +64,7 @@ class Analyser:
         if line[start.value] != "$":
             return []
 
-        start.value += 1
-        result = [start.value]
+        result = [start.inc]
         finish = start.value
         while finish < len(line):
             if finish - start.value < self.__identifier_length:
@@ -104,13 +100,49 @@ class Analyser:
 
         return []
 
-# endregion
+    def __is_string(self, line, start):
+        if self.__is_end_line(line, start):
+            return []
 
-    def __is_end_line(self, line, start):
-        if start.value == len(line):
-            return True
+        if line[start.value] != '"':
+            return []
 
-        return False
+        result = [start.value, start.inc]
+        finish = start.value
+        while finish < len(line):
+            if line[finish] == '"':  # isalnum for now. Change to any character until you meet '"'
+                break
+            elif not line[finish].isalnum():
+                break
+            else:
+                finish += 1
+
+        if start.value == finish or finish == len(line):  # no closing '"'
+            return [-1]
+
+        start.value = finish
+        result.append(start.value)
+        result.append(start.inc)
+        return result
+
+    def __is_declaration(self, line, start):
+        if self.__is_end_line(line, start):
+            return []
+
+        if line[start.value] != '[':
+            return []
+
+        results = [start.value, start.inc]
+        results.extend(self.__is_type(line, start))
+        if line[start.value] != ']':  # ERROR Did not find closing ']'
+            return [-1]
+
+        results.extend([start.value, start.inc])
+        results.extend(self.__is_id(line, start))
+        return results
+
+    def __is_param(self, line, start):
+        pass
 
     def __is_separator(self, line, start, specific_separator=None):
         if self.__is_end_line(line, start):
@@ -182,8 +214,6 @@ class Analyser:
     def __is_function(self, line, start):
         return []
 
-# endregion
-
     def extract(self, source_code):
         self.__reset(source_code)
 
@@ -196,6 +226,7 @@ class Analyser:
             indexes = [start.value]
             while start.value < len(line):
                 start_copy = MutableInt(start.value)
+                indexes.extend(self.__is_)
                 indexes.extend(self.__is_separator(line, start))
                 indexes.extend(self.__is_keyword(line, start))
                 indexes.extend(self.__is_id(line, start))
@@ -230,14 +261,91 @@ class Analyser:
         return self.__atoms[:]
 
 
+class PowerShellAnalyser:
+    """
+        Class used for analyzing a PowerShell code file 
+    """
+
+    def __init__(self, config, types, identifier_length=8):
+        self.__config = config
+        self.__types = types
+        self.__identifier_length = identifier_length
+        self.__ids = []
+        self.__const = []
+        self.__init_rules()
+
+    def __add_id(self, id: str) -> None:
+        self.__ids.append(id)
+
+    def __add_const(self, const: str) -> None:
+        self.__const.append(int(const))
+
+    def __init_rules(self) -> [utils.Rule]:
+        self.__rules: [utils.Rule] = []
+        self.__rules.append(rules.Id(self.__add_id, self.__identifier_length))
+        self.__rules.append(rules.Const(self.__add_const))
+        self.__rules.append(rules.Type(self.__types))
+
+    def analyze(self, source_code: str) -> [utils.Atom]:
+        atoms: [utils.Atom] = []
+        for line_index, line in enumerate(source_code):
+            line = line.rstrip()
+            if not line:
+                continue
+
+            start = utils.MutableInt()
+            patterns = [start()]
+            while start() < len(line):
+                if -1 in patterns:
+                    break
+
+                beginning = start()
+                for rule in self.__rules:
+                    rule.check(line, start)
+
+                if beginning == start():
+                    patterns.append(-1)
+
+            for i in range(1, len(patterns)):
+                if patterns[i] == -1:
+                    atoms.append(
+                        Atom(f"Error on line {line_index + 1} character {start() + 1}", None))
+                else:
+                    key = line[patterns[i - 1]: patterns[i]]
+                    val = None
+                    if atom in self.__ids:
+                        val = 'ID'
+                    elif int(atom) in self.__const:
+                        val = 'CONST'
+                    else:
+                        val = key
+
+                    atoms.append(Atom(key, self.__config[key]))
+
+        self.__ids = []
+        self.__const = []
+        return atoms
+
+
 if __name__ == "__main__":
     config_file_path = os.path.join(
-        os.getcwd(), "lab1\\4_analyser\\PowerShell.config")
+        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShell.config")
+    types_file_path = os.path.join(
+        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShellTypes.config")
     config = {}
     with open(config_file_path, "r") as fin:
         for line in fin:
             key, val = line.split("~")
             config[key] = int(val)
+
+    types = []
+    with open(types_file_path, "r") as fin:
+        for line in fin:
+            line = line.rstrip()
+            if not line:
+                continue
+
+            types.append(line)
 
     source_code_file_path = os.path.join(
         os.getcwd(), "lab1\\4_analyser\\source.txt")
@@ -245,7 +353,8 @@ if __name__ == "__main__":
     with open(source_code_file_path, "r") as fin:
         source_code = fin.readlines()
 
-    lexer = Analyser(config)
-    atoms = lexer.extract(source_code)
+    # lexer = Analyser(config)
+    lexer = PowerShellAnalyser(config, types)
+    atoms = lexer.analyze(source_code)
     for atom in atoms:
         print(f"{str(atom.value).rjust(4)} : {atom.key}")
