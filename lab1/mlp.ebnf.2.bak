@@ -1,0 +1,49 @@
+### EBNF
+### MLP from PowerShell
+
+## Syntactic rules
+program = "main([array]$args) -> [integer] {" statementList "}" .
+
+# Statement
+statementList = statement | statement ";" statementList .
+statement = operationList | ioStatement | ifStatement | whileStatement .
+
+# Operation
+operationList = operation ";" | operation ";" operationList .
+operation = simpleOperation | assignmentList .
+simpleOperation = identifier arithmeticOperator identifier .
+
+# Assignment
+assignmentList = assignment ";" | assignment "," assignmentList .
+assignment = lhs assignmentOperator rhs | readStatement .
+lhs = identifier | declaration .
+rhs = identifier | simpleOperation .
+
+# Declaration
+declarationList = declaration ";" | declaration ";" declarationList .
+declaration = "[" type "]" identifier .
+
+# Type
+type = "integer" | "real" | "string" | "boolean" | "array" .
+
+# IOStatement
+ioStatement = readStatement | writeStatement .
+readStatement = lhs assignmentOperator "readHost();" .
+writeStatement = "writeHost(" identifier ");" .
+
+# If
+ifStatement = "if(" condition ") {" statementList "}" .
+
+# While
+whileStatement = "while(" condition ") {" statementList "}" .
+
+# Condition
+condition = identifier comparisonOperator identifier .
+
+## Lexical rules
+identifier = "$" letter{letter}{digit} .
+letter = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z" .
+digit = "0" | "1" | ... | "9" .
+comparisonOperator = "-lt" | "-le" | "-eq" | "-ne" | "-gt" | "-ge" .
+arithmeticOperator = "+" | "-" | "*" | "/" | "%" | "++" | "--" | "**" | "//" .
+assignmentOperator = "=" .

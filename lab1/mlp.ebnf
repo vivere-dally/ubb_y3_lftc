@@ -1,0 +1,57 @@
+### EBNF
+### MLP from PowerShell
+
+### Reserved words: param, int, string, bool, array, Read-Host, Write-Host, if, while
+
+## Syntactic rules
+program = statementList | "param(" declaration {"," declaration} ")" statementList  .
+
+# Statement
+statementList = statement | statement ";" statementList .
+statement = operationList | ioStatement | ifStatement | whileStatement .
+
+# Operation
+operationList = operation ";" | operation ";" operationList .
+operation = simpleOperation | assignment .
+simpleOperation = identifier arithmeticOperator identifier .
+
+# Assignment
+assignment = lhs assignmentOperator rhs | readStatement .
+lhs = identifier | declaration .
+rhs = identifier | simpleOperation .
+
+# Declaration
+declarationList = declaration ";" | declaration ";" declarationList .
+declaration = "[" type "]" identifier .
+
+# Type
+type = "int" | "string" | "bool" | "array" .
+
+# IOStatement
+ioStatement = readStatement ";" | writeStatement ";" .
+readStatement = lhs assignmentOperator "Read-Host" .
+writeStatement = "Write-Host " identifier .
+
+# If
+ifStatement = "if(" compoundCondition ") {" statementList "}" .
+
+# While
+whileStatement = "while(" compoundCondition ") {" statementList "}" .
+
+# Condition
+compoundCondition = condition | "(" condition ")" comparisonOperator "(" compoundCondition ")"
+condition = identifier comparisonOperator identifier .
+
+# Operators
+equalityOperator = "-lt" | "-le" | "-eq" | "-ne" | "-gt" | "-ge"
+comparisonOperator = "-and" | "-or" | "-not" .
+arithmeticOperator = "+" | "-" | "*" | "/" | "%" .
+assignmentOperator = "=" .
+
+## Lexical rules
+identifier = "$" letter{letter}{digit} .
+letter = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z" .
+digit = "0" | "1" | ... | "9" .
+string = "\"" {char} "\""
+char = letter | digit
+const = ("1" | "2" | ... | "9" ) {digit}
