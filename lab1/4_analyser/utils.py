@@ -1,6 +1,3 @@
-import abc
-
-
 class MutableInt:
     """
         This class is a wrapper over an integer value.
@@ -42,23 +39,6 @@ class MutableInt:
             self.__value = value
 
         return self.__value
-
-
-class Rule(metaclass=abc.ABCMeta):
-    @abc.abstractmethod
-    def check(self, line: str, start: MutableInt) -> []:
-        """
-        Checks if this rule applies
-        By default, this method checks if the start parameter got to the end of line.
-
-        Args:
-            line (str): The current line that is getting checked.
-            start (MutableInt): The starting index where the rule should start checking from.
-
-        Returns:
-            []: returns a list with indexes if the rule applies or a rule with -1 if an error is found while checking.
-        """
-        return True if len(line) == start() else False
 
 
 class Atom:

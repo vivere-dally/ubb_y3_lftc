@@ -1,10 +1,43 @@
 from typing import Callable
+import abc
 import os
 import utils
 import analyser
 
 
-class Id(utils.Rule):
+class Rule(metaclass=abc.ABCMeta):
+    def _strip_until(self, line: str, start: utils.MutableInt) -> None:
+        """Removes unnecessary spaces
+
+        Args:
+            line (str): The line that will be processed.
+            start (utils.MutableInt): The index specifying where to start searching.
+        """
+        while line[start()] == ' ':
+            left = line[:start()]
+            if start() + 1 < len(line):
+                right = line[start() + 1:]
+            line = left + right
+
+    @abc.abstractmethod
+    def check(self, line: str, start: utils.MutableInt) -> []:
+        """
+        Checks if this rule applies
+        By default, this method checks if the start parameter got to the end of line.
+
+        Args:
+            line (str): The current line that is getting checked.
+            start (utils.MutableInt): The starting index where the rule should start checking from.
+
+        Returns:
+            []: returns a list with indexes if the rule applies or a rule with -1 if an error is found while checking.
+        """
+
+        self._strip_until(line, start)
+        return True if len(line) == start() else False
+
+
+class Id(Rule):
     """
         This class checks the given line from the given index for a PowerShell ID.
     """
@@ -43,7 +76,7 @@ class Id(utils.Rule):
         return result
 
 
-class Const(utils.Rule):
+class Const(Rule):
     """
         This class checks the given line from the given index for a PowerShell Const.
     """
@@ -73,7 +106,7 @@ class Const(utils.Rule):
         return []
 
 
-class Type(utils.Rule):
+class Type(Rule):
     """
         This class checks the given line from the given index for a PowerShell Type.
     """
@@ -100,3 +133,110 @@ class Type(utils.Rule):
             return [start(finish)]
 
         return []
+
+
+class Declaration(Rule):
+    """
+        This class checks the given line from the given index for a PowerShell Declaration.
+    """
+
+    def __init__(self, id: Rule, type: Rule):
+        """
+        Args:
+            id (Rule): Rule that checks if a pattern is a PowerShell ID.
+            type (Rule): Rule that checks if a pattern is a PowerShell Type.
+        """
+        self.__id = id
+        self.__type = type
+
+    def check(self, line: str, start: utils.MutableInt) -> []:
+        if super(Declaration, self).check(line, start):
+            return []
+
+        if line[start()] != '[':
+            return []
+
+        self._strip_until(line, start)  # CASE: [    <TYPE>]
+        results = [start(), start.inc]
+        results.extend(self.__type.check(line, start))
+        self._strip_until(line, start)  # CASE: [    <TYPE>    ]
+        if line[start()] != ']':
+            return [-1]
+
+        self._strip_until(line, start)  # CASE: [    <TYPE>    ]    $ID
+        results.extend([start(), start.inc])
+        results.extend(self.__id.check(line, start))
+        return results
+
+
+class DeclarationList(Rule):
+    """
+        This class checks the given line from the given index for PowerShell Declarations.
+    """
+
+    def __init__(self, declaration: Rule):
+        """
+        Args:
+            declaration (Rule): Rule that checks if a pattern is a PowerShell Declaration.
+        """
+        self.__declaration = declaration
+
+    def check(self, line: str, start: utils.MutableInt) -> []:
+        if super(DeclarationList, self).check(line, start):
+            return []
+
+        results = []
+        finish = 0
+        while finish < len(line) and finish != start():
+            finish = start()
+            results.extend(self.__declaration.check(line, start))
+            self._strip_until(line, start)  # CASE: <DECLARATION>    ;
+            if start() == finish or line[start()] != ';':
+                return results
+            else:
+                results.extend([start(), start.inc])
+
+        return results
+
+
+class Param(Rule):
+    """
+        This class checks the given line from the given index for PowerShell Param.
+    """
+
+    def __init__(self, declaration: Rule):
+        """
+        Args:
+            declaration (Rule): Rule that checks if a pattern is a PowerShell Declaration.
+        """
+        self.__declaration = declaration
+
+    def check(self, line: str, start: utils.MutableInt) -> []:
+        if super(Param, self).check(line, start):
+            return []
+
+        if line[start():start() + 5] != "param":
+            return []
+
+        results = [start(), start(start() + 5)]
+        self._strip_until(line, start)  # CASE: param    (
+        if line[start()] != '(':
+            return [-1]
+
+        results.extend([start(), start.inc])
+        finish = 0
+        while finish < len(line) and finish != start():
+            finish = start()
+            results.extend(self.__declaration.check(line, start))
+            self._strip_until(line, start)  # CASE: <DECLARATION>    ,
+            if start() == finish or line[start()] != ',':
+                return results
+            else:
+                results.extend([start(), start.inc])
+
+        self._strip_until(line, start)  # CASE: <DECLARATION>    )
+        if line[start()] != ')':
+            return [-1]
+
+        results.extend([start(), start.inc])
+        return results

@@ -1,6 +1,7 @@
 import os
 import utils
 import rules
+import loader
 
 
 class Atom:
@@ -266,13 +267,37 @@ class PowerShellAnalyser:
         Class used for analyzing a PowerShell code file 
     """
 
-    def __init__(self, config, types, identifier_length=8):
-        self.__config = config
+    def __init__(self, atoms, pairs, types, identifier_length=8):
+        self.__atoms = atoms
+        self.__pairs = pairs
         self.__types = types
         self.__identifier_length = identifier_length
         self.__ids = []
         self.__const = []
         self.__init_rules()
+
+    class PowerShellPreprocessor:
+        def __init__(self, pairs: []):
+            self.__pairs = pairs
+
+        def process(self, source_code):
+            for pair in self.__pairs:
+                a = []
+                for line_index, line in enumerate(source_code):
+                    for char_index, char in enumerate(line):
+                        if char == pair[0]:
+                            a.append([line_index + 1, char_index + 1])
+                        elif char == pair[1]:
+                            try:
+                                a.pop()
+                            except:
+                                print(
+                                    f"Found '{pair[1]}' on line {str(line_index + 1)} character {str(char_index + 1)}. Missing opening '{pair[0]}'...")
+
+                if 0 != len(a):
+                    for a_ in a:
+                        print(
+                            f"Found '{pair[0]}' on line {str(a_[0])} character {str(a_[1])}. Missing closing '{pair[1]}'...")
 
     def __add_id(self, id: str) -> None:
         self.__ids.append(id)
@@ -280,16 +305,20 @@ class PowerShellAnalyser:
     def __add_const(self, const: str) -> None:
         self.__const.append(int(const))
 
-    def __init_rules(self) -> [utils.Rule]:
-        self.__rules: [utils.Rule] = []
+    def __init_rules(self):
+        self.__rules: [rules.Rule] = []
         self.__rules.append(rules.Id(self.__add_id, self.__identifier_length))
         self.__rules.append(rules.Const(self.__add_const))
         self.__rules.append(rules.Type(self.__types))
 
-    def analyze(self, source_code: str) -> [utils.Atom]:
+    def analyze(self, source_code) -> [utils.Atom]:
+        psp = self.PowerShellPreprocessor(self.__pairs)
+        psp.process(source_code)
+
         atoms: [utils.Atom] = []
         for line_index, line in enumerate(source_code):
             line = line.rstrip()
+            line = line.strip()
             if not line:
                 continue
 
@@ -308,19 +337,19 @@ class PowerShellAnalyser:
 
             for i in range(1, len(patterns)):
                 if patterns[i] == -1:
-                    atoms.append(
-                        Atom(f"Error on line {line_index + 1} character {start() + 1}", None))
+                    print(
+                        f"Error on line {line_index + 1} character {patterns[i] + 1}. Token: '{line[patterns[i]]}'")
                 else:
                     key = line[patterns[i - 1]: patterns[i]]
                     val = None
-                    if atom in self.__ids:
+                    if key in self.__ids:
                         val = 'ID'
-                    elif int(atom) in self.__const:
+                    elif int(key) in self.__const:
                         val = 'CONST'
                     else:
                         val = key
 
-                    atoms.append(Atom(key, self.__config[key]))
+                    atoms.append(Atom(key, self.__atoms[key]))
 
         self.__ids = []
         self.__const = []
@@ -328,33 +357,23 @@ class PowerShellAnalyser:
 
 
 if __name__ == "__main__":
-    config_file_path = os.path.join(
-        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShell.config")
-    types_file_path = os.path.join(
-        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShellTypes.config")
-    config = {}
-    with open(config_file_path, "r") as fin:
-        for line in fin:
-            key, val = line.split("~")
-            config[key] = int(val)
+    psa = loader.PowerShellAtomsLoader()
+    atoms = psa.load(os.path.join(
+        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShellAtoms.config"))
 
-    types = []
-    with open(types_file_path, "r") as fin:
-        for line in fin:
-            line = line.rstrip()
-            if not line:
-                continue
+    psp = loader.PowerShellPairsLoader()
+    pairs = psp.load(os.path.join(
+        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShellPairs.config"))
 
-            types.append(line)
+    pst = loader.PowerShellTypesLoader()
+    types = pst.load(os.path.join(
+        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShellTypes.config"))
 
-    source_code_file_path = os.path.join(
-        os.getcwd(), "lab1\\4_analyser\\source.txt")
     source_code = None
-    with open(source_code_file_path, "r") as fin:
+    with open(os.path.join(os.getcwd(), "lab1\\4_analyser\\source.txt"), "r") as fin:
         source_code = fin.readlines()
 
-    # lexer = Analyser(config)
-    lexer = PowerShellAnalyser(config, types)
+    lexer = PowerShellAnalyser(atoms, pairs, types)
     atoms = lexer.analyze(source_code)
     for atom in atoms:
         print(f"{str(atom.value).rjust(4)} : {atom.key}")
