@@ -13,12 +13,14 @@ statement = operationList | ioStatement | ifStatement | whileStatement .
 # Operation
 operationList = operation ";" | operation ";" operationList .
 operation = simpleOperation | assignment .
-simpleOperation = identifier arithmeticOperator (const | string) | identifier arithmeticOperator identifier .
+# simpleOperation = (identifier | const) | (identifier | const) arithmeticOperator simpleOperation .
+simpleOperation = (identifier | const) arithmeticOperator (identifier | const) {arithmeticOperator (identifier | const)}
 
 # Assignment
 assignment = lhs assignmentOperator rhs | readStatement .
 lhs = identifier | declaration .
-rhs = identifier | simpleOperation .
+# rhs = identifier | simpleOperation .
+rhs = (identifier | const) | (identifier | const) arithmeticOperator simpleOperation .
 
 # Declaration
 declarationList = declaration ";" | declaration ";" declarationList .
@@ -30,7 +32,7 @@ type = "int" | "string" | "bool" | "array" .
 # IOStatement
 ioStatement = readStatement ";" | writeStatement ";" .
 readStatement = lhs assignmentOperator "Read-Host" .
-writeStatement = "Write-Host " identifier .
+writeStatement = "Write-Host " (identifier | const) .
 
 # If
 ifStatement = "if(" compoundCondition ") {" statementList "}" .
@@ -40,11 +42,11 @@ whileStatement = "while(" compoundCondition ") {" statementList "}" .
 
 # Condition
 compoundCondition = condition | "(" compoundCondition ")" logicalOperator "(" compoundCondition ")"
-condition = identifier equalityOperator identifier .
+condition = (identifier | const) equalityOperator (identifier | const) .
 
 # Operators
 equalityOperator = "-lt" | "-le" | "-eq" | "-ne" | "-gt" | "-ge"
-logicalOperator = "-and" | "-or" | "-not" .
+logicalOperator = "-and" | "-or" .
 arithmeticOperator = "+" | "-" | "*" | "/" | "%" .
 assignmentOperator = "=" .
 
