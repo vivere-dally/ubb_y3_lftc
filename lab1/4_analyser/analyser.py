@@ -15,12 +15,21 @@ class PowerShellAnalyser:
 
         def process(self, source_code):
             for pair in self.__pairs:
+                eq = False
+                appended = False
+                if pair['opening'] == pair['closing']:
+                    eq = True
+
                 a = []
                 for line_index, line in enumerate(source_code):
                     for char_index, char in enumerate(line):
                         if char == pair['opening']:
-                            a.append([line_index + 1, char_index + 1])
-                        elif char == pair['closing']:
+                            if eq and appended:
+                                a.pop()
+                            else:
+                                a.append([line_index + 1, char_index + 1])
+                            appended = True
+                        elif not eq and char == pair['closing']:
                             try:
                                 a.pop()
                             except:
@@ -144,6 +153,9 @@ class PowerShellAnalyser:
                     print(
                         f"ERROR on line {str(line_index + 1)} character {str(patterns[i - 1] + 1)}. Token: '{token}'")
                 else:
+                    if patterns[i - 1] == -1:
+                        continue
+
                     key = line()[patterns[i - 1]: patterns[i]]
                     val = None
                     if key in self.__ids:
