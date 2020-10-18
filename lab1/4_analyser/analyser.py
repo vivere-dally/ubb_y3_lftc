@@ -140,13 +140,9 @@ class PowerShellAnalyser:
 
             for i in range(1, len(patterns)):
                 if patterns[i] == -1:
-                    token = None
-                    try:
-                        token = line()[patterns[i - 1] + 1]
-                    except:
-                        token = line()[patterns[i - 1]]
+                    token = line()[patterns[i - 1]]
                     print(
-                        f"Error on line {str(line_index + 1)} character {str(patterns[i - 1] + 1)}. Token: '{token}'")
+                        f"ERROR on line {str(line_index + 1)} character {str(patterns[i - 1] + 1)}. Token: '{token}'")
                 else:
                     key = line()[patterns[i - 1]: patterns[i]]
                     val = None

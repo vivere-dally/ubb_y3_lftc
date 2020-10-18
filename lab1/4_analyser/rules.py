@@ -216,8 +216,12 @@ class Param(Rule):
             finish = start()
             results.extend(self.__declaration.check(line, start))
             line.strip(start())  # CASE: <DECLARATION>    ,
-            if start() == finish or line()[start()] != ',':
+            if start() == finish or line()[start()] == ')':
                 break
+            elif line()[start()] != ',':
+                start.inc
+                results.append(-1)
+                return results
             else:
                 results.append(start.inc)
 
