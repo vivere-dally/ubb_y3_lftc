@@ -1,7 +1,6 @@
 import os
 import json
 import rules
-import loader
 import analyser
 
 
@@ -44,4 +43,4 @@ if __name__ == "__main__":
     atoms = lexer.analyze(source_code)
 
     for atom in atoms:
-        print(f"{str(atom.value).rjust(4)} : {atom.key}")
+        print(atom)

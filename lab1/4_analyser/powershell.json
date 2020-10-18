@@ -146,7 +146,7 @@
     "equality": ["-lt", "-le", "-eq", "-ne", "-gt", "-ge"],
     "logical": ["-or", "-and"],
     "arithmetic": ["+", "-", "*", "/", "%"],
-    "assignment": ["="]
+    "assignment": "="
   },
   "pairs": [
     { "opening": "(", "closing": ")" },

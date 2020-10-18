@@ -20,6 +20,7 @@ class Rule(metaclass=abc.ABCMeta):
             []: returns a list with indexes if the rule applies or a rule with -1 if an error is found while checking.
         """
 
+        line.strip(start())
         return True if len(line()) == start() else False
 
 
@@ -233,14 +234,16 @@ class Read(Rule):
         This class checks the given line from the given index for PowerShell Read-Host.
     """
 
-    def __init__(self, id: Rule, declaration: Rule):
+    def __init__(self, id: Rule, declaration: Rule, assignment_operator: str):
         """
         Args:
             id (Rule): Rule that checks if a pattern is a PowerShell ID.
             declaration (Rule): Rule that checks if a pattern is a PowerShell Declaration.
+            assignment_operator (str): PowerShell assignment operator.
         """
         self.__id = id
         self.__declaration = declaration
+        self.__assignment_operator = assignment_operator
 
     def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
         if super(Read, self).check(line, start):
@@ -253,7 +256,7 @@ class Read(Rule):
                 return []
 
         line.strip(start())  # CASE: <DECLARATION> | <ID>    =
-        if '=' != line()[start()]:
+        if self.__assignment_operator != line()[start(): start() + len(self.__assignment_operator)]:
             return results
 
         results.append(start.inc)
@@ -265,7 +268,6 @@ class Read(Rule):
         line.strip(start())  # CASE: Read-Host     ;
         if ';' == line()[start()]:
             results.append(start.inc)
-            return results
 
         return results
 
@@ -296,7 +298,7 @@ class Write(Rule):
         if " " != line()[start()]:
             results.append(-1)
             return results
-        
+
         results.append(start.inc)
         line.strip(start())  # CASE: Write-Host     <ID>
         results_ = self.__id.check(line, start)
@@ -311,7 +313,6 @@ class Write(Rule):
         line.strip(start())  # CASE: Write-Host <ID>    ;
         if ';' == line()[start()]:
             results.append(start.inc)
-            return results
 
         return results
 
@@ -379,7 +380,6 @@ class CompoundCondition(Rule):
             condition (Rule): Rule that checks if a pattern is a PowerShell Condition.
             logical_operators (list): List of PowerShell logical operators.
         """
-        self.__id = id
         self.__condition = condition
         self.__logical_operators = logical_operators
 
@@ -430,7 +430,6 @@ class If(Rule):
         Args:
             compoundCondition (Rule): Rule that checks if a pattern is a PowerShell Compound Condition.
         """
-        self.__id = id
         self.__compoundCondition = compoundCondition
 
     def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
@@ -469,7 +468,6 @@ class While(Rule):
         Args:
             compoundCondition (Rule): Rule that checks if a pattern is a PowerShell Compound Condition.
         """
-        self.__id = id
         self.__compoundCondition = compoundCondition
 
     def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
@@ -496,3 +494,108 @@ class While(Rule):
             results.append(start.inc)
 
         return results
+
+
+class Operation(Rule):
+    """
+        This class checks the given line from the given index for PowerShell Operation statement.
+    """
+
+    def __init__(self, id: Rule, const: Rule, arithmetic_operators: list):
+        """
+        Args:
+            id (Rule): Rule that checks if a pattern is a PowerShell ID.
+            const (Rule): Rule that checks if a pattern is a PowerShell Const.
+            arithmetic_operators (list): List of PowerShell arithmetic operators.
+        """
+        self.__id = id
+        self.__const = const
+        self.__arithmetic_operators = arithmetic_operators
+
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+        if super(Operation, self).check(line, start):
+            return []
+
+        results = []
+        results_ = self.__id.check(line, start)
+        if 0 == len(results_):
+            results_ = self.__const.check(line, start)
+            if 0 == len(results_):
+                return results
+
+        while 0 != len(results_):
+            results.extend(results_)
+            results_.clear()
+            line.strip(start())  # CASE: (<ID> | <CONST>)    <AR_OP>
+
+            ar_op_found = False
+            for ar_op in self.__arithmetic_operators:
+                if ar_op_found:
+                    break
+
+                if ar_op == line()[start(): start() + len(ar_op)]:
+                    ar_op_found = True
+                    results.append(start(start() + len(ar_op)))
+
+            line.strip(start())  # CASE: <AR_OP>    (<ID> | <CONST>)
+            results_ = self.__id.check(line, start)
+            if 0 == len(results_):
+                results_ = self.__const.check(line, start)
+
+        line.strip(start())  # CASE: (<ID> | <CONST>)    ;
+        if ';' == line()[start()]:
+            results.append(start.inc)
+
+        return results
+
+
+class Assignment(Rule):
+    """
+        This class checks the given line from the given index for PowerShell Assignment.
+    """
+
+    def __init__(self, id: Rule, declaration: Rule, operation: Rule, assignment_operator: str):
+        """
+        Args:
+            id (Rule): Rule that checks if a pattern is a PowerShell ID.
+            declaration (Rule): Rule that checks if a pattern is a PowerShell Declaration.
+            operation (Rule): Rule that checks if a pattern is a PowerShell Operation.
+            assignment_operator (str): PowerShell assignment operator.
+        """
+        self.__id = id
+        self.__declaration = declaration
+        self.__operation = operation
+        self.__assignment_operator = assignment_operator
+
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+        if super(Assignment, self).check(line, start):
+            return []
+
+        results = self.__declaration.check(line, start)
+        if 0 == len(results):
+            results = self.__id.check(line, start)
+            if 0 == len(results):
+                return []
+
+        line.strip(start())  # CASE: <DECLARATION> | <ID>    =
+        if self.__assignment_operator != line()[start(): start() + len(self.__assignment_operator)]:
+            return results
+
+        results.append(start.inc)
+        results.extend(self.__operation.check(line, start))
+        return results
+
+
+class StatementEnding(Rule):
+    """
+        This class checks the given line from the given index for PowerShell Trailing }.
+    """
+
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+        if super(StatementEnding, self).check(line, start):
+            return []
+
+        if '}' == line()[start()]:
+            return [start.inc]
+
+        return []

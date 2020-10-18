@@ -66,7 +66,7 @@ class MutableString:
             if start + 1 < end:
                 right = self.__value[start + 1:]
             self.__value = left + right
-            
+
     def __call__(self, value=None):
         """Get or set the value
 
@@ -84,3 +84,6 @@ class Atom:
     def __init__(self, key, value):
         self.key = key
         self.value = value
+
+    def __str__(self):
+        return f"{str(self.value).rjust(4)} : {self.key}"

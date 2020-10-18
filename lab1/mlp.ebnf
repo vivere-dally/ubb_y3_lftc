@@ -12,7 +12,7 @@ statement = operationList | ioStatement | ifStatement | whileStatement .
 
 # Operation
 operationList = operation ";" | operation ";" operationList .
-operation = simpleOperation | assignment .
+operation = assignment | simpleOperation .
 # simpleOperation = (identifier | const) | (identifier | const) arithmeticOperator simpleOperation .
 simpleOperation = (identifier | const) arithmeticOperator (identifier | const) {arithmeticOperator (identifier | const)}
 

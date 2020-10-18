@@ -1,7 +1,6 @@
 import os
 import utils
 import rules
-import loader
 
 
 class PowerShellAnalyser:
@@ -52,22 +51,68 @@ class PowerShellAnalyser:
         self.__consts.append(int(const))
 
     def __init_rules(self):
+        # CHECK FOR ID
         id_r = rules.Id(self.__add_id)
+
+        # CHECK FOR CONST
         const_r = rules.Const(self.__add_const)
+
+        # CHECK FOR TYPE
         type_r = rules.Type(self.__types)
+
+        # CHECK FOR DECLARATION
         declaration_r = rules.Declaration(id_r, type_r)
+
+        # CHECK FOR DECLARATION LIST
         declaration_list_r = rules.DeclarationList(declaration_r)
+
+        # CHECK FOR PARAM
         param_r = rules.Param(declaration_r)
-        read_r = rules.Read(id_r, declaration_r)
+
+        # CHECK FOR READ STATEMENT
+        read_r = rules.Read(
+            id_r, declaration_r, self.__operators['assignment'])
+
+        # CHECK FOR WRITE STATEMENT
         write_r = rules.Write(id_r, const_r)
+
+        # CHECK FOR CONDITION
         condition_r = rules.Condition(
             id_r, const_r, self.__operators['equality'])
+
+        # CHECK FOR COMPOUND CONDITION
         compound_condition_r = rules.CompoundCondition(
             condition_r, self.__operators['logical'])
+
+        # CHECK FOR IF STATEMENT
         if_r = rules.If(compound_condition_r)
+
+        # CHECK FOR WHILE STATEMENT
         while_r = rules.While(compound_condition_r)
-        self.__rules = [param_r, read_r, write_r, if_r,
-                        while_r, declaration_list_r, declaration_r]
+
+        # CHECK FOR OPERATION
+        operation_r = rules.Operation(
+            id_r, const_r, self.__operators['arithmetic'])
+
+        # CHECK FOR ASSIGNMENT
+        assignment_r = rules.Assignment(
+            id_r, declaration_r, operation_r, self.__operators['assignment'])
+
+        # CHECKS FOR TRAILING }
+        statement_ending_r = rules.StatementEnding()
+
+        # Add all Rules
+        self.__rules = [
+            param_r,
+            assignment_r,
+            operation_r,
+            read_r,
+            write_r,
+            if_r,
+            while_r,
+            declaration_list_r,
+            declaration_r,
+            statement_ending_r]
 
     def analyze(self, source_code) -> [utils.Atom]:
         psp = self.PowerShellPreprocessor(self.__pairs)
@@ -120,26 +165,3 @@ class PowerShellAnalyser:
         self.__ids = []
         self.__consts = []
         return atoms
-
-
-if __name__ == "__main__":
-    psa = loader.PowerShellAtomsLoader()
-    atoms = psa.load(os.path.join(
-        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShellAtoms.config"))
-
-    psp = loader.PowerShellPairsLoader()
-    pairs = psp.load(os.path.join(
-        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShellPairs.config"))
-
-    pst = loader.PowerShellTypesLoader()
-    types = pst.load(os.path.join(
-        os.getcwd(), "lab1\\4_analyser\\configs\\PowerShellTypes.config"))
-
-    source_code = None
-    with open(os.path.join(os.getcwd(), "lab1\\4_analyser\\source.txt"), "r") as fin:
-        source_code = fin.readlines()
-
-    lexer = PowerShellAnalyser(atoms, pairs, types)
-    atoms = lexer.analyze(source_code)
-    for atom in atoms:
-        print(f"{str(atom.value).rjust(4)} : {atom.key}")
