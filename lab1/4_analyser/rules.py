@@ -6,35 +6,21 @@ import analyser
 
 
 class Rule(metaclass=abc.ABCMeta):
-    def _strip_until(self, line: str, start: utils.MutableInt) -> None:
-        """Removes unnecessary spaces
-
-        Args:
-            line (str): The line that will be processed.
-            start (utils.MutableInt): The index specifying where to start searching.
-        """
-        while line[start()] == ' ':
-            left = line[:start()]
-            if start() + 1 < len(line):
-                right = line[start() + 1:]
-            line = left + right
-
     @abc.abstractmethod
-    def check(self, line: str, start: utils.MutableInt) -> []:
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
         """
         Checks if this rule applies
         By default, this method checks if the start parameter got to the end of line.
 
         Args:
-            line (str): The current line that is getting checked.
+            line (utils.MutableString): The current line that is getting checked.
             start (utils.MutableInt): The starting index where the rule should start checking from.
 
         Returns:
             []: returns a list with indexes if the rule applies or a rule with -1 if an error is found while checking.
         """
 
-        self._strip_until(line, start)
-        return True if len(line) == start() else False
+        return True if len(line()) == start() else False
 
 
 class Id(Rule):
@@ -51,18 +37,18 @@ class Id(Rule):
         self.__identifier_length = identifier_length
         self.__add_id = add_id
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
         if super(Id, self).check(line, start):
             return []
 
-        if line[start()] != "$":
+        if line()[start()] != "$":
             return []
 
         result = [start.inc]
         finish = start()
-        while finish < len(line):
+        while finish < len(line()):
             if finish - start() < self.__identifier_length:
-                if not line[finish].isalnum():
+                if not line()[finish].isalnum():
                     break
                 else:
                     finish += 1
@@ -70,7 +56,7 @@ class Id(Rule):
                 return [-1]
 
         if start() != finish:
-            self.__add_id(line[start():finish])
+            self.__add_id(line()[start():finish])
             result.append(start(finish))
 
         return result
@@ -88,19 +74,19 @@ class Const(Rule):
         """
         self.__add_const = add_const
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
         if super(Const, self).check(line, start):
             return []
 
         finish = start()
-        while finish < len(line):
-            if not line[finish].isdigit():
+        while finish < len(line()):
+            if not line()[finish].isdigit():
                 break
             else:
                 finish += 1
 
         if start() != finish:
-            self.__add_const(line[start():finish])
+            self.__add_const(line()[start():finish])
             return [start(finish)]
 
         return []
@@ -118,18 +104,18 @@ class Type(Rule):
         """
         self.__types = types
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
         if super(Type, self).check(line, start):
             return []
 
         finish = start()
-        while finish < len(line):
-            if not line[finish].isalpha():
+        while finish < len(line()):
+            if not line()[finish].isalpha():
                 break
             else:
                 finish += 1
 
-        if line[start():finish] in self.__types:
+        if line()[start():finish] in self.__types:
             return [start(finish)]
 
         return []
@@ -149,22 +135,22 @@ class Declaration(Rule):
         self.__id = id
         self.__type = type
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
         if super(Declaration, self).check(line, start):
             return []
 
-        if line[start()] != '[':
+        if line()[start()] != '[':
             return []
 
-        self._strip_until(line, start)  # CASE: [    <TYPE>]
-        results = [start(), start.inc]
+        line.strip(start())  # CASE: [    <TYPE>]
+        results = [start.inc]
         results.extend(self.__type.check(line, start))
-        self._strip_until(line, start)  # CASE: [    <TYPE>    ]
-        if line[start()] != ']':
+        line.strip(start())  # CASE: [    <TYPE>    ]
+        if line()[start()] != ']':
             return [-1]
 
-        self._strip_until(line, start)  # CASE: [    <TYPE>    ]    $ID
-        results.extend([start(), start.inc])
+        line.strip(start())  # CASE: [    <TYPE>    ]    $ID
+        results.append(start.inc)
         results.extend(self.__id.check(line, start))
         return results
 
@@ -181,20 +167,20 @@ class DeclarationList(Rule):
         """
         self.__declaration = declaration
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
         if super(DeclarationList, self).check(line, start):
             return []
 
         results = []
         finish = 0
-        while finish < len(line) and finish != start():
+        while finish < len(line()) and finish != start():
             finish = start()
             results.extend(self.__declaration.check(line, start))
-            self._strip_until(line, start)  # CASE: <DECLARATION>    ;
-            if start() == finish or line[start()] != ';':
+            line.strip(start())  # CASE: <DECLARATION>    ;
+            if start() == finish or line()[start()] != ';':
                 return results
             else:
-                results.extend([start(), start.inc])
+                results.append(start.inc)
 
         return results
 
@@ -211,34 +197,34 @@ class Param(Rule):
         """
         self.__declaration = declaration
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
         if super(Param, self).check(line, start):
             return []
 
-        if line[start():start() + 5] != "param":
+        if line()[start():start() + 5] != "param":
             return []
 
-        results = [start(), start(start() + 5)]
-        self._strip_until(line, start)  # CASE: param    (
-        if line[start()] != '(':
+        results = [start(start() + 5)]
+        line.strip(start())  # CASE: param    (
+        if line()[start()] != '(':
             return [-1]
 
-        results.extend([start(), start.inc])
+        results.append(start.inc)
         finish = 0
-        while finish < len(line) and finish != start():
+        while finish < len(line()) and finish != start():
             finish = start()
             results.extend(self.__declaration.check(line, start))
-            self._strip_until(line, start)  # CASE: <DECLARATION>    ,
-            if start() == finish or line[start()] != ',':
-                return results
+            line.strip(start())  # CASE: <DECLARATION>    ,
+            if start() == finish or line()[start()] != ',':
+                break
             else:
-                results.extend([start(), start.inc])
+                results.append(start.inc)
 
-        self._strip_until(line, start)  # CASE: <DECLARATION>    )
-        if line[start()] != ')':
+        line.strip(start())  # CASE: <DECLARATION>    )
+        if line()[start()] != ')':
             return [-1]
 
-        results.extend([start(), start.inc])
+        results.append(start.inc)
         return results
 
 
@@ -256,8 +242,8 @@ class Read(Rule):
         self.__id = id
         self.__declaration = declaration
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
-        if super(Param, self).check(line, start):
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+        if super(Read, self).check(line, start):
             return []
 
         results = self.__declaration.check(line, start)
@@ -266,19 +252,19 @@ class Read(Rule):
             if 0 == len(results):
                 return []
 
-        self._strip_until(line, start)  # CASE: <DECLARATION> | <ID>    =
-        if '=' != line[start()]:
+        line.strip(start())  # CASE: <DECLARATION> | <ID>    =
+        if '=' != line()[start()]:
             return results
 
-        results.extend([start(), start.inc])
-        self._strip_until(line, start)  # CASE: ...    Read-Host
-        if "Read-Host" != line[start(): start() + 9]:
+        results.append(start.inc)
+        line.strip(start())  # CASE: ...    Read-Host
+        if "Read-Host" != line()[start(): start() + 9]:
             return results
 
-        results.extend([start(), start(start() + 9)])
-        self._strip_until(line, start)  # CASE: Read-Host     ;
-        if ';' == line[start()]:
-            results.append([start(), start.inc])
+        results.append(start(start() + 9))
+        line.strip(start())  # CASE: Read-Host     ;
+        if ';' == line()[start()]:
+            results.append(start.inc)
             return results
 
         return results
@@ -298,16 +284,21 @@ class Write(Rule):
         self.__id = id
         self.__const = const
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
-        if super(Param, self).check(line, start):
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+        if super(Write, self).check(line, start):
             return []
 
         results = []
-        if "Write-Host " != line[start(): start() + 11]:
+        if "Write-Host" != line()[start(): start() + 10]:
             return []
 
-        results.extend([start(), start(start() + 11)])
-        self._strip_until(line, start)  # CASE: Write-Host     <ID>
+        results.append(start(start() + 10))
+        if " " != line()[start()]:
+            results.append(-1)
+            return results
+        
+        results.append(start.inc)
+        line.strip(start())  # CASE: Write-Host     <ID>
         results_ = self.__id.check(line, start)
         if 0 == len(results_):
             results_ = self.__const.check(line, start)
@@ -316,9 +307,10 @@ class Write(Rule):
                 results.append(-1)
                 return results
 
-        self._strip_until(line, start)  # CASE: Write-Host <ID>    ;
-        if ';' == line[start()]:
-            results.append([start(), start.inc])
+        results.extend(results_)
+        line.strip(start())  # CASE: Write-Host <ID>    ;
+        if ';' == line()[start()]:
+            results.append(start.inc)
             return results
 
         return results
@@ -329,19 +321,19 @@ class Condition(Rule):
         This class checks the given line from the given index for PowerShell Condition.
     """
 
-    def __init__(self, id: Rule, const: Rule, equality_operators: List):
+    def __init__(self, id: Rule, const: Rule, equality_operators: list):
         """
         Args:
             id (Rule): Rule that checks if a pattern is a PowerShell ID.
             const (Rule): Rule that checks if a pattern is a PowerShell Const.
-            equality_operators (List): List of PowerShell equality operators.
+            equality_operators (list): List of PowerShell equality operators.
         """
         self.__id = id
         self.__const = const
         self.__equality_operators = equality_operators
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
-        if super(Param, self).check(line, start):
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+        if super(Condition, self).check(line, start):
             return []
 
         results = self.__id.check(line, start)
@@ -350,22 +342,22 @@ class Condition(Rule):
             if 0 == len(results):
                 return []
 
-        self._strip_until(line, start)  # CASE: ID | CONST    <EQ_OP>
+        line.strip(start())  # CASE: ID | CONST    <EQ_OP>
         eq_op_found = False
         for eq_op in self.__equality_operators:
             if eq_op_found:
                 break
 
-            if eq_op == line[start(), start() + len(eq_op)]:
+            if eq_op == line()[start(): start() + len(eq_op)]:
                 eq_op_found = True
-                results.extend([start(), start(start() + len(eq_op))])
+                results.append(start(start() + len(eq_op)))
 
         if not eq_op_found:
             return results
 
-        self._strip_until(line, start)  # CASE: <EQ_OP>    ID | CONST
+        line.strip(start())  # CASE: <EQ_OP>    ID | CONST
         results_ = self.__id.check(line, start)
-        if 0 == len(id):
+        if 0 == len(results_):
             results_ = self.__const.check(line, start)
             if 0 == len(results_):
                 start.inc
@@ -381,48 +373,48 @@ class CompoundCondition(Rule):
         This class checks the given line from the given index for PowerShell Compound Condition.
     """
 
-    def __init__(self, condition: Rule, logical_operators: List):
+    def __init__(self, condition: Rule, logical_operators: list):
         """
         Args:
             condition (Rule): Rule that checks if a pattern is a PowerShell Condition.
-            logical_operators (List): List of PowerShell logical operators.
+            logical_operators (list): List of PowerShell logical operators.
         """
         self.__id = id
         self.__condition = condition
         self.__logical_operators = logical_operators
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
-        if super(Param, self).check(line, start):
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+        if super(CompoundCondition, self).check(line, start):
             return []
 
         results = []
-        if '(' == line[start(), start() + 1]:
-            start.inc
+        if '(' == line()[start(): start() + 1]:
+            results.append(start.inc)
             results.extend(self.check(line, start))
 
-        self._strip_until(line, start)  # CASE: (    <CONDITION>
+        line.strip(start())  # CASE: (    <CONDITION>
         results.extend(self.__condition.check(line, start))
-        self._strip_until(line, start)  # CASE: <CONDITION>    )
-        while ')' == line[start(), start() + 1]:
-            results.extend([start(), start.inc])
-            self._strip_until(line, start)  # CASE: <CONDITION>    )    )
+        line.strip(start())  # CASE: <CONDITION>    )
+        while ')' == line()[start(): start() + 1]:
+            results.append(start.inc)
+            line.strip(start())  # CASE: <CONDITION>    )    )
 
-        self._strip_until(line, start)  # CASE: )    <LG_OP>
+        line.strip(start())  # CASE: )    <LG_OP>
         lg_op_found = False
         for lg_op in self.__logical_operators:
             if lg_op_found:
                 break
 
-            if lg_op == line[start(), start() + len(lg_op)]:
+            if lg_op == line()[start(): start() + len(lg_op)]:
                 lg_op_found = True
-                results.extend([start(), start(start() + len(lg_op))])
+                results.append(start(start() + len(lg_op)))
 
         if not lg_op_found:
             return results
 
-        self._strip_until(line, start)  # CASE: <LG_OP>    (
-        if '(' == line[start(), start() + 1]:
-            start.inc
+        line.strip(start())  # CASE: <LG_OP>    (
+        if '(' == line()[start(), start() + 1]:
+            results.append(start.inc)
             results.extend(self.check(line, start))
 
         return results
@@ -441,32 +433,29 @@ class If(Rule):
         self.__id = id
         self.__compoundCondition = compoundCondition
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
-        if super(Param, self).check(line, start):
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+        if super(If, self).check(line, start):
             return []
 
-        if "if" != line[start(), start() + 2]:
+        if "if" != line()[start(): start() + 2]:
             return []
 
-        results = [start(), start(start() + 2)]
-        self._strip_until(line, start)  # CASE: if    (
-        if '(' != line[start(), start() + 1]:
+        results = [start(start() + 2)]
+        line.strip(start())  # CASE: if    (
+        if '(' != line()[start(): start() + 1]:
             start.inc
             results.append(-1)
             return results
 
         results.extend(self.__compoundCondition.check(line, start))
-        self._strip_until(line, start)  # CASE: <CP_CON>   )
-        if ')' == line[start(), start() + 1]:
-            results.extend([start(), start.inc])
+        line.strip(start())  # CASE: <CP_CON>   )
+        if ')' == line()[start(): start() + 1]:
+            results.append(start.inc)
 
-        self._strip_until(line, start)  # CASE: )    {
-        if '{' != line[start(), start() + 1]:
-            start.inc
-            results.append(-1)
-            return results
+        line.strip(start())  # CASE: )    {
+        if '{' == line()[start(): start() + 1]:
+            results.append(start.inc)
 
-        results.extend([start(), start.inc])
         return results
 
 
@@ -483,30 +472,27 @@ class While(Rule):
         self.__id = id
         self.__compoundCondition = compoundCondition
 
-    def check(self, line: str, start: utils.MutableInt) -> []:
-        if super(Param, self).check(line, start):
+    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+        if super(While, self).check(line, start):
             return []
 
-        if "while" != line[start(), start() + 5]:
+        if "while" != line()[start(): start() + 5]:
             return []
 
-        results = [start(), start(start() + 2)]
-        self._strip_until(line, start)  # CASE: while    (
-        if '(' != line[start(), start() + 1]:
+        results = [start(start() + 5)]
+        line.strip(start())  # CASE: while    (
+        if '(' != line()[start(), start() + 1]:
             start.inc
             results.append(-1)
             return results
 
         results.extend(self.__compoundCondition.check(line, start))
-        self._strip_until(line, start)  # CASE: <CP_CON>   )
-        if ')' == line[start(), start() + 1]:
-            results.extend([start(), start.inc])
+        line.strip(start())  # CASE: <CP_CON>   )
+        if ')' == line()[start(), start() + 1]:
+            results.append(start.inc)
 
-        self._strip_until(line, start)  # CASE: )    {
-        if '{' != line[start(), start() + 1]:
-            start.inc
-            results.append(-1)
-            return results
+        line.strip(start())  # CASE: )    {
+        if '{' == line[start(), start() + 1]:
+            results.append(start.inc)
 
-        results.extend([start(), start.inc])
         return results
