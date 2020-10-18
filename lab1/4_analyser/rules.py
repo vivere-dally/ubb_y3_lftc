@@ -156,34 +156,34 @@ class Declaration(Rule):
         return results
 
 
-class DeclarationList(Rule):
-    """
-        This class checks the given line from the given index for PowerShell Declarations.
-    """
+# class DeclarationList(Rule):
+#     """
+#         This class checks the given line from the given index for PowerShell Declarations.
+#     """
 
-    def __init__(self, declaration: Rule):
-        """
-        Args:
-            declaration (Rule): Rule that checks if a pattern is a PowerShell Declaration.
-        """
-        self.__declaration = declaration
+#     def __init__(self, declaration: Rule):
+#         """
+#         Args:
+#             declaration (Rule): Rule that checks if a pattern is a PowerShell Declaration.
+#         """
+#         self.__declaration = declaration
 
-    def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
-        if super(DeclarationList, self).check(line, start):
-            return []
+#     def check(self, line: utils.MutableString, start: utils.MutableInt) -> []:
+#         if super(DeclarationList, self).check(line, start):
+#             return []
 
-        results = []
-        finish = 0
-        while finish < len(line()) and finish != start():
-            finish = start()
-            results.extend(self.__declaration.check(line, start))
-            line.strip(start())  # CASE: <DECLARATION>    ;
-            if start() == finish or line()[start()] != ';':
-                return results
-            else:
-                results.append(start.inc)
+#         results = []
+#         finish = -1
+#         while finish < len(line()) and finish != start():
+#             finish = start()
+#             results.extend(self.__declaration.check(line, start))
+#             line.strip(start())  # CASE: <DECLARATION>    ;
+#             if start() == finish or line()[start()] != ';':
+#                 return results
+#             else:
+#                 results.append(start.inc)
 
-        return results
+#         return results
 
 
 class Param(Rule):
@@ -249,26 +249,32 @@ class Read(Rule):
         if super(Read, self).check(line, start):
             return []
 
-        results = self.__declaration.check(line, start)
+        # Simulate search
+        line_c = utils.MutableString(line())
+        start_c = utils.MutableInt(start())
+
+        results = self.__declaration.check(line_c, start_c)
         if 0 == len(results):
-            results = self.__id.check(line, start)
+            results = self.__id.check(line_c, start_c)
             if 0 == len(results):
                 return []
 
-        line.strip(start())  # CASE: <DECLARATION> | <ID>    =
-        if self.__assignment_operator != line()[start(): start() + len(self.__assignment_operator)]:
-            return results
+        line_c.strip(start_c())  # CASE: <DECLARATION> | <ID>    =
+        if self.__assignment_operator != line_c()[start_c(): start_c() + len(self.__assignment_operator)]:
+            return []
 
-        results.append(start.inc)
-        line.strip(start())  # CASE: ...    Read-Host
-        if "Read-Host" != line()[start(): start() + 9]:
-            return results
+        results.append(start_c.inc)
+        line_c.strip(start_c())  # CASE: ...    Read-Host
+        if "Read-Host" != line_c()[start_c(): start_c() + 9]:
+            return []
 
-        results.append(start(start() + 9))
-        line.strip(start())  # CASE: Read-Host     ;
-        if ';' == line()[start()]:
-            results.append(start.inc)
+        results.append(start_c(start_c() + 9))
+        line_c.strip(start_c())  # CASE: Read-Host     ;
+        if ';' == line_c()[start_c()]:
+            results.append(start_c.inc)
 
+        line(line_c())
+        start(start_c())
         return results
 
 
@@ -479,18 +485,18 @@ class While(Rule):
 
         results = [start(start() + 5)]
         line.strip(start())  # CASE: while    (
-        if '(' != line()[start(), start() + 1]:
+        if '(' != line()[start(): start() + 1]:
             start.inc
             results.append(-1)
             return results
 
         results.extend(self.__compoundCondition.check(line, start))
         line.strip(start())  # CASE: <CP_CON>   )
-        if ')' == line()[start(), start() + 1]:
+        if ')' == line()[start(): start() + 1]:
             results.append(start.inc)
 
         line.strip(start())  # CASE: )    {
-        if '{' == line[start(), start() + 1]:
+        if '{' == line()[start(): start() + 1]:
             results.append(start.inc)
 
         return results

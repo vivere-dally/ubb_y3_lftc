@@ -1,4 +1,5 @@
 import os
+import numpy as np
 import utils
 import rules
 
@@ -63,9 +64,6 @@ class PowerShellAnalyser:
         # CHECK FOR DECLARATION
         declaration_r = rules.Declaration(id_r, type_r)
 
-        # CHECK FOR DECLARATION LIST
-        declaration_list_r = rules.DeclarationList(declaration_r)
-
         # CHECK FOR PARAM
         param_r = rules.Param(declaration_r)
 
@@ -104,17 +102,18 @@ class PowerShellAnalyser:
         # Add all Rules
         self.__rules = [
             param_r,
-            assignment_r,
-            operation_r,
             read_r,
             write_r,
             if_r,
             while_r,
-            declaration_list_r,
-            declaration_r,
+            assignment_r,
+            operation_r,
             statement_ending_r]
 
     def analyze(self, source_code) -> [utils.Atom]:
+        self.__ids = []
+        self.__consts = []
+
         psp = self.PowerShellPreprocessor(self.__pairs)
         psp.process(source_code)
 
@@ -155,13 +154,11 @@ class PowerShellAnalyser:
                         val = 'ID'
                     else:
                         try:
-                            if int(key) in self.__const:
+                            if int(key) in self.__consts:
                                 val = 'CONST'
                         except:
                             val = key
 
                     atoms.append(utils.Atom(key, self.__atoms[val]))
 
-        self.__ids = []
-        self.__consts = []
-        return atoms
+        return atoms, np.unique(np.array(self.__ids[:])).tolist(), np.unique(np.array(self.__consts[:])).tolist()
