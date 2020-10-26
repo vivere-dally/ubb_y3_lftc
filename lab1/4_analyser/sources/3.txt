@@ -1,9 +1,5 @@
-param([int]$a,[int]$b)
+param([int]$x;[int]$y)
 
-while (0 -ne $b) {
-    [int]$temp = $a % $b;
-    $a = $b;
-    $b = $temp;
+if ($x < $y) {
+    Write-Host "Yes."
 }
-
-Write-Host $a;

@@ -19,5 +19,5 @@ if ($c -gt $max) {
     $max = $c;
 }
 
-Write-Host $min;
-Write-Host $max;
+Write - Host $min;
+Write - Host $max;

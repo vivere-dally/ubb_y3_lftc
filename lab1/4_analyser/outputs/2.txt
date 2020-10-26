@@ -1,7 +1,5 @@
-=== IDS ===
-['i', 'n', 'sum', 'temp']
-=== CONSTS ===
-[0, 1]
+=== IDS & CONSTS ===
+['0', '1', 'i', 'n', 'sum', 'temp']
 === ATOMS ===
    7 : [
   12 : int

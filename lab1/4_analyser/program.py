@@ -47,30 +47,22 @@ if __name__ == "__main__":
             print(f"====== OUTPUT {str(file_index + 1)} ======")
             source_code = load_source_code(file_input_path)
             atoms, ids, consts = lexer.analyze(source_code)
-            ids_tree = avl.AVLTree()
-            for id in ids:
-                ids_tree.insert(id)
 
-            consts_tree = avl.AVLTree()
+            ids_consts_tree = avl.AVLTree()
+            for id in ids:
+                ids_consts_tree.insert(id)
+
             for const in consts:
-                consts_tree.insert(const)
+                ids_consts_tree.insert(str(const))
 
             file_output_path = os.path.join(output_path, file)
             with open(file_output_path, 'w') as fout:
-                print("=== IDS ===")
-                fout.write("=== IDS ===" + os.linesep)
+                print("=== IDS & CONSTS ===")
+                fout.write("=== IDS & CONSTS ===" + os.linesep)
 
-                ids_tree_in = ids_tree.inorder()
-                print(ids_tree_in)
-                fout.write(str(ids_tree_in))
-                fout.write(os.linesep)
-
-                print("=== CONSTS ===")
-                fout.write("=== CONSTS ===" + os.linesep)
-
-                consts_tree_in = consts_tree.inorder()
-                print(consts_tree_in)
-                fout.write(str(consts_tree_in))
+                ids_consts_tree_in = ids_consts_tree.inorder()
+                print(ids_consts_tree_in)
+                fout.write(str(ids_consts_tree_in))
                 fout.write(os.linesep)
 
                 print("=== ATOMS ===")

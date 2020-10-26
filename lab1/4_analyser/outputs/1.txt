@@ -1,7 +1,5 @@
-=== IDS ===
+=== IDS & CONSTS ===
 ['a', 'b', 'c', 'max', 'min']
-=== CONSTS ===
-[]
 === ATOMS ===
   34 : param
    5 : (
@@ -105,13 +103,3 @@
    2 : c
    4 : ;
   10 : }
-  33 : Write-Host
-  35 :  
-   1 : $
-   2 : min
-   4 : ;
-  33 : Write-Host
-  35 :  
-   1 : $
-   2 : max
-   4 : ;
