@@ -1,5 +1,5 @@
 class Transition:
-    """Class that represents a transition prefix i.e. the secondary state and the necessary number to get to this state.
+    """Class that represents a transition suffix i.e. the secondary state and the necessary number to get to this state.
     """
 
     def __init__(self, state: str, number: int):
