@@ -2,7 +2,7 @@ class Transition:
     """Class that represents a transition suffix i.e. the secondary state and the necessary number to get to this state.
     """
 
-    def __init__(self, state: str, number: int):
+    def __init__(self, state: str, number: str):
         """Initializes a transition class.
         Args:
             state (str): the state e.g. q2

@@ -20,13 +20,13 @@ class FiniteAutomaton:
         self.initial_state = initial_state
         self.final_states = final_states
         self.transitions = transitions
-        
+
     def __repr__(self):
         all_trans = ""
         for state in self.states:
             for transition in self.transitions.get(state, []):
                 all_trans += f"\nfrom {state} {transition}"
-        
+
         return f"States: {self.states}\nAlphabet: {self.alphabet}\nTransitions: {all_trans}\nFinal states: {self.final_states}\n"
 
     def check_sequence(self, sequence: str) -> bool:
@@ -58,7 +58,7 @@ class FiniteAutomaton:
                 print(
                     f"no transition from {current_state} with {number}. Continue...")
                 is_accepted = False
-                
+
         if current_state not in self.final_states:
             return False
 
@@ -91,4 +91,11 @@ class FiniteAutomaton:
 
             prefix_end_index += 1
 
-        return sequence[:prefix_end_index]
+        prefix = sequence[:prefix_end_index]
+        while not self.check_sequence(prefix):
+            if not prefix:
+                break
+
+            prefix = prefix[:-1]
+
+        return prefix
