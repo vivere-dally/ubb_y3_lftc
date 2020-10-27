@@ -92,10 +92,7 @@ class FiniteAutomaton:
             prefix_end_index += 1
 
         prefix = sequence[:prefix_end_index]
-        while not self.check_sequence(prefix):
-            if not prefix:
-                break
-
+        while not prefix and not self.check_sequence(prefix):
             prefix = prefix[:-1]
 
         return prefix
