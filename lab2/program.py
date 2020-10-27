@@ -11,14 +11,14 @@ if __name__ == '__main__':
         fa = read_fa_from_input()
 
     print(fa)
-    menu = "\n\n1. Check sequence (csv).\n2. Get longest prefix of sequence (csv).\n>> "
+    menu = "\n\n1. Check sequence.\n2. Get longest prefix of sequence.\n>> "
     while True:
         line = input(menu)
         if not line:
             break
 
         command = int(line)
-        seq = input("Enter sequence.\n>> ").strip().rstrip().split(',')
+        seq = input("Enter sequence.\n>> ").strip().rstrip()
         if command == 1:
             is_accepted = fa.check_sequence(seq)
             print(f"\nIsAccepted: {is_accepted}")

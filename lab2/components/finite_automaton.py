@@ -29,11 +29,11 @@ class FiniteAutomaton:
         
         return f"States: {self.states}\nAlphabet: {self.alphabet}\nTransitions: {all_trans}\nFinal states: {self.final_states}\n"
 
-    def check_sequence(self, sequence: list) -> bool:
+    def check_sequence(self, sequence: str) -> bool:
         """Checks if a sequence of numbers is accepted by the finite automaton.
 
         Args:
-            sequence (list): the list of numbers to move from one state to another
+            sequence (str): the str of numbers to move from one state to another
 
         Returns:
             bool: true if the sequence is accepted, false otherwise
@@ -64,14 +64,14 @@ class FiniteAutomaton:
 
         return is_accepted
 
-    def get_longest_prefix(self, sequence: list) -> list:
+    def get_longest_prefix(self, sequence: str) -> str:
         """Returns the longest prefix of numbers that is accepted by the finite automaton.
 
         Args:
-            sequence (list): the list of numbers to move from one state to another
+            sequence (str): the string of numbers to move from one state to another
 
         Returns:
-            list: the longest prefix
+            str: the longest prefix
         """
         current_state = self.initial_state
         prefix_end_index = 0
