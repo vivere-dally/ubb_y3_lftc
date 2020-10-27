@@ -42,12 +42,12 @@ class FiniteAutomaton:
         current_state = self.initial_state
         for number in sequence:
             if number not in self.alphabet:
-                print(f"{number} not in alphabet\nContinue...")
+                print(f"{number} not in alphabet. Continue...")
                 is_accepted = False
                 continue
 
             current_state_changed = False
-            for transition in self.transitions[current_state]:
+            for transition in self.transitions.get(current_state, []):
                 if transition.number == number:
                     print(f"from {current_state} {transition}")
                     current_state = transition.state
@@ -56,8 +56,11 @@ class FiniteAutomaton:
 
             if not current_state_changed:
                 print(
-                    f"no transition from {current_state} with {number}\nContinue...")
+                    f"no transition from {current_state} with {number}. Continue...")
                 is_accepted = False
+                
+        if current_state not in self.final_states:
+            return False
 
         return is_accepted
 
@@ -77,7 +80,7 @@ class FiniteAutomaton:
                 break
 
             current_state_changed = False
-            for transition in self.transitions[current_state]:
+            for transition in self.transitions.get(current_state, []):
                 if transition.number == number:
                     current_state = transition.state
                     current_state_changed = True

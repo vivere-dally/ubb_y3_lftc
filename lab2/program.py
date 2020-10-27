@@ -2,7 +2,7 @@ from components.utils import read_fa_from_file, read_fa_from_input
 import os
 
 if __name__ == '__main__':
-    file_path = os.path.join(os.getcwd(), "lab2\\eg.in")
+    file_path = os.path.join(os.getcwd(), "lab2\\cpp_ints.in")
     fa = None
     command = int(input("1. Read FA from file.\n2. Read FA from input.\n>> "))
     if command == 1:
