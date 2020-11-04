@@ -1,0 +1,22 @@
+## Syntactic rules
+structure = alphabet initial_state final_states list_of_tranzitions .
+
+# Alphabet: symbol e.g. 0, 1, ...
+alphabet = symbol | alphabet ";" symbol .
+
+# States: q + number e.g. q0, q1, ...
+initial_state = state .
+final_states = state | final_states ";" state .
+state = "q" number .
+
+# Tranzition: state;state;symbols e.g. q0;q1;3 i.e. from q0 go to q1 with 3
+list_of_tranzitions = tranzition | list_of_tranzitions tranzition .
+tranzition = state ";" state ";" symbol_list .
+symbol_list = symbol | symbol_list "," symbol .
+
+## Lexical rules
+digit = "0" | "1" | ... | "9" .
+letter = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z" .
+punctuation = "!" | "\"" | "#" | "$" | "%" | "&" | "'" | "(" | ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | "<" | "=" | ">" | "?" | "@" | "[" | "\" | "]" | "^" | "_" | "`" | "{" | "|" | "}" | "~" .
+symbol = { (digit | letter | punctuation) } .
+number = digit | ( "1" | ... | "9" ) {digit} .
