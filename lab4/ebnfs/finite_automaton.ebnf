@@ -1,5 +1,8 @@
 ## Syntactic rules
-structure = alphabet initial_state final_states list_of_tranzitions .
+structure = defined_atom alphabet initial_state final_states list_of_tranzitions .
+
+# Defined lexical atom: e.g. ID, CONST ...
+defined_atom = symbol
 
 # Alphabet: symbol e.g. 0, 1, ...
 alphabet = symbol | alphabet ";" symbol .

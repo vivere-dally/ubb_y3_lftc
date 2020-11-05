@@ -1,0 +1,15 @@
+OPERATOR
++;-;*;/;%;=;a;d;e;g;l;n;o;q;r;t
+q0
+q1;q2;q4;q6;q8;q11
+q0;q1;+,*,/,%,=
+q0;q2;-
+q2;q3;l,g
+q3;q4;t,e
+q2;q5;e
+q5;q6;q
+q2;q7;o
+q7;q8;r
+q2;q9;a
+q9;q10;n
+q10;q11;d

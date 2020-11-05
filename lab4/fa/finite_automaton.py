@@ -6,16 +6,18 @@ class FiniteAutomaton:
     """Class that represents a finite automaton.
     """
 
-    def __init__(self, alphabet: list, states: list, initial_state: str, final_states: list, transitions: dict):
+    def __init__(self, atom: str, alphabet: list, states: list, initial_state: str, final_states: list, transitions: dict):
         """Initializes a finite automaton class.
 
         Args:
+            atom (str): the analyzed atom
             alphabet (list): a list of strings that represents the alphabet e.g. ["0", "1", "2"]
             states (list): a list of strings that represents all the states in the FA
             initial_state (str): a string that represents a state which is the entry point in the automaton. E.g. q0
             final_states (list): a list of strings that represent the final states. E.g. ["q0","q1","q2"]
             transitions (dict): a dictionary with key string and value list of fa.transition.Transition. I.e. from state i you can go to states 1..n.
         """
+        self.atom = atom
         self.alphabet = alphabet
         self.states = states
         self.initial_state = initial_state
@@ -28,9 +30,9 @@ class FiniteAutomaton:
             for transition in self.transitions.get(state, []):
                 all_trans += f"\nfrom {state} {transition}"
 
-        return f"States: {self.states}\nAlphabet: {self.alphabet}\nTransitions: {all_trans}\nFinal states: {self.final_states}\n"
+        return f"Atom: {self.atom}\nStates: {self.states}\nAlphabet: {self.alphabet}\nTransitions: {all_trans}\nFinal states: {self.final_states}\n"
 
-    def __get_next_state(self, symbol: str, state: str) -> tuple:
+    def __get_next_state(self, symbol: str, state: str) -> (str, bool):
         """
             Get the next state
 
@@ -39,12 +41,12 @@ class FiniteAutomaton:
             state (str): Specifies the current state.
 
         Returns:
-            (tuple): Returns a tuple formed from a str representing the state and a boolean representing wheter or not the state changed.
+            (str, bool): Returns a tuple formed from a str representing the state and a boolean representing wheter or not the state changed.
         """
 
         state_changed = False
         for transition in self.transitions.get(state, []):
-            if transition.symbol == symbol:
+            if symbol in transition.symbols:
                 state = transition.state
                 state_changed = True
                 break
@@ -86,11 +88,11 @@ class FiniteAutomaton:
         Returns:
             str: the longest prefix
         """
-        current_state = self.initial_state
+        state = self.initial_state
         prefix_end_index = 0
         for symbol in sequence:
             if symbol not in self.alphabet:
-                raise SymbolNotInAlphabetError(symbol, self.alphabet)
+                break
 
             state, state_changed = self.__get_next_state(symbol, state)
             if not state_changed:
@@ -122,6 +124,7 @@ def load_fa_from_file(path: str) -> FiniteAutomaton:
     final_states = None
     transitions = {}
     with open(path) as fin:
+        atom = fin.readline().strip().rstrip()
         alphabet = fin.readline().strip().rstrip().split(';')
         initial_state = fin.readline().strip().rstrip()
         final_states = list(fin.readline().strip().rstrip().split(';'))
@@ -138,7 +141,7 @@ def load_fa_from_file(path: str) -> FiniteAutomaton:
                     Transition(sufix_state, symbols)]
 
     states = sorted(list(states))
-    return FiniteAutomaton(alphabet, states, initial_state, final_states, transitions)
+    return FiniteAutomaton(atom, alphabet, states, initial_state, final_states, transitions)
 
 
 def load_fa_from_user() -> FiniteAutomaton:
@@ -148,6 +151,8 @@ def load_fa_from_user() -> FiniteAutomaton:
     Returns:
         FiniteAutomaton: the finite automaton
     """
+
+    atom = input("Enter the analyzed lexical atom:").strip().rstrip()
     alphabet = input(
         "Enter the alphabet (semicolon separated):").strip().rstrip().split(';')
     states = set()
@@ -173,4 +178,4 @@ def load_fa_from_user() -> FiniteAutomaton:
                 Transition(sufix_state, symbols)]
 
     states = sorted(list(states))
-    return FiniteAutomaton(alphabet, states, initial_state, final_states, transitions)
+    return FiniteAutomaton(atom, alphabet, states, initial_state, final_states, transitions)

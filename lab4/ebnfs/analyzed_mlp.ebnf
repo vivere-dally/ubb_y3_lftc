@@ -1,7 +1,7 @@
 ### EBNF
 ### MLP from PowerShell
 
-### Reserved words: param, int, string, bool, array, Read-Host, Write-Host, if, while
+### Reserved words: param, int, const_string, bool, array, Read-Host, Write-Host, if, while
 
 ## Syntactic rules
 program = statementList | "param(" declaration {"," declaration} ")" statementList  .
@@ -30,7 +30,7 @@ type = "int" | "string" | "bool" | "array" .
 # IOStatement
 ioStatement = readStatement ";" | writeStatement ";" .
 readStatement = lhs assignmentOperator "Read-Host" .
-writeStatement = "Write-Host " (identifier | const) .
+writeStatement = "Write-Host" (identifier | const | const_string) .
 
 # If
 ifStatement = "if(" compoundCondition ") {" statementList "}" .
@@ -40,7 +40,7 @@ whileStatement = "while(" compoundCondition ") {" statementList "}" .
 
 # Condition
 compoundCondition = condition | "(" compoundCondition ")" logicalOperator "(" compoundCondition ")"
-condition = (identifier | const) equalityOperator (identifier | const) .
+condition = (identifier | const | const_string) equalityOperator (identifier | const | const_string) .
 
 # Operators
 equalityOperator = "-lt" | "-le" | "-eq" | "-ne" | "-gt" | "-ge"
@@ -52,6 +52,5 @@ assignmentOperator = "=" .
 identifier = "$" letter { (letter | digit) } .
 letter = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z" .
 digit = "0" | "1" | ... | "9" .
-string = "\"" {char} "\""
-char = letter | digit
+const_string = "\"" { (letter | digit ) } "\""
 const = ("1" | "2" | ... | "9" ) {digit}
