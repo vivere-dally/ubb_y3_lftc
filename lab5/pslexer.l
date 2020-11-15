@@ -7,6 +7,11 @@ void print(char* atom, char* token) {
 	printf("%10s : %2s : %s\n", atom, np->defn, token);
 }
 
+void print_special(char* atom, char* token, char* special) {
+	struct nlist *np = lookup(token);
+	printf("%10s : %2s : %s\n", atom, np->defn, special);
+}
+
 %}
 
 %option noyywrap
@@ -28,6 +33,10 @@ Write-Host|Read-Host					{ print("IO", yytext); }
 "+"|"-"|"*"|"/"|"%"						{ print("AR OPERATOR", yytext); }
 "="										{ print("AS OPERATOR", yytext); }
 "("|")"|"["|"]"|"{"|"}"|","|";"			{ print("SEPARATOR", yytext); }
+{ID}									{ print_special("ID", "ID", yytext); }
+{CONST}									{ print_special("CONST", "CONST", yytext); }
+{CONST_STRING}							{ print_special("STR CONST", "STRING_CONST", yytext); }
+" "|"\n"|"\t"							{ printf(""); }
 .										{ printf("ERROR: unrecognized token on line %d.\n", yylineno); }
 
 %%
