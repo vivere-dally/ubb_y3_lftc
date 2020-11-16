@@ -52,17 +52,10 @@ struct list_node *install_list(struct list *list, char *s)
             return NULL;
         }
 
-        current->tokenKey = list->currentTokenKey++; /* push_front */
-        if (list->root == NULL)
-        {
-            current->next = NULL;
-            list->root = current;
-        }
-        else
-        {
-            current->next = list->root;
-            list->root = current;
-        }
+        /* push_front */
+        current->tokenKey = list->currentTokenKey++;
+        current->next = list->root;
+        list->root = current;
     }
 
     return current;
