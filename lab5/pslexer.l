@@ -1,15 +1,19 @@
 %{
 
 #include "dict.h"
+#include "list.h"
+
+struct list *id_list, *const_list, *str_const_list;
 
 void print(char* atom, char* token) {
 	struct nlist *np = lookup(token);
 	printf("%10s : %2s : %s\n", atom, np->defn, token);
 }
 
-void print_special(char* atom, char* token, char* special) {
+void print_special(char* atom, char* token, char* special, struct list* list) {
 	struct nlist *np = lookup(token);
 	printf("%10s : %2s : %s\n", atom, np->defn, special);
+	install_list(list, special);
 }
 
 %}
@@ -33,9 +37,9 @@ Write-Host|Read-Host					{ print("IO", yytext); }
 "+"|"-"|"*"|"/"|"%"						{ print("AR OPERATOR", yytext); }
 "="										{ print("AS OPERATOR", yytext); }
 "("|")"|"["|"]"|"{"|"}"|","|";"			{ print("SEPARATOR", yytext); }
-{ID}									{ print_special("ID", "ID", yytext); }
-{CONST}									{ print_special("CONST", "CONST", yytext); }
-{CONST_STRING}							{ print_special("STR CONST", "STRING_CONST", yytext); }
+{ID}									{ print_special("ID", "ID", yytext, id_list); }
+{CONST}									{ print_special("CONST", "CONST", yytext, const_list); }
+{CONST_STRING}							{ print_special("STR CONST", "STRING_CONST", yytext, str_const_list); }
 " "|"\n"|"\t"							{ printf(""); }
 .										{ printf("ERROR: unrecognized token on line %d.\n", yylineno); }
 
@@ -84,6 +88,16 @@ char **argv;
 		install("Write-Host", "33");
 		install(" ", "34");
 		install("param", "35");
+
+		id_list = new_list();
+		const_list = new_list();
+		str_const_list = new_list();
+
 		yylex();
+
+		print_list(id_list, "ID");
+		print_list(const_list, "CONST");
+		print_list(str_const_list, "STR CONST");
+
 		return 0;
 	} 

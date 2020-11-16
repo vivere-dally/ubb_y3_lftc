@@ -1,3 +1,7 @@
+#ifndef _MY_DICT_H_
+#define _MY_DICT_H_
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,3 +61,5 @@ struct nlist *install(char *name, char *defn)
        return NULL;
     return np;
 }
+
+#endif
