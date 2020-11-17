@@ -28,6 +28,7 @@ CONST_STRING							\"[^\"]*\"
 ID										$[a-zA-Z]([a-zA-Z]|[0-9]){0,7}
 
 %%
+cattimp|executa|sfcattimp				{ print("EXT STMT", yytext); }
 param									{ print("PARAM", yytext); }
 int|string|bool|array					{ print("TYPE", yytext); }
 if|while								{ print("STATEMENT", yytext); }
@@ -88,6 +89,9 @@ char **argv;
 		install("Write-Host", "33");
 		install(" ", "34");
 		install("param", "35");
+		install("cattimp", "36");
+		install("executa", "37");
+		install("sfcattimp", "38");
 
 		id_list = new_list();
 		const_list = new_list();
