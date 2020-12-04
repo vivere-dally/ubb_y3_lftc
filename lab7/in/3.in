@@ -1,5 +1,5 @@
-param([int]$x;[int]$y)
+param([int]$x,[int]$y)
 
 if ($x -lt $y) {
-    Write-Host "Yes"
+    Write-Host "Yes";
 }
