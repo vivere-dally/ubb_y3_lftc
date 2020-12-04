@@ -1,0 +1,56 @@
+### EBNF
+### MLP from PowerShell
+
+### Reserved words: param, int, const_string, bool, array, Read-Host, Write-Host, if, while
+
+## Syntactic rules
+program = statementList | "param(" declaration {"," declaration} ")" statementList  .
+
+# Statement
+statementList = statement | statement ";" statementList .
+statement = operationList | ioStatement | ifStatement | whileStatement .
+
+# Operation
+operationList = operation ";" | operation ";" operationList .
+operation = assignment | simpleOperation .
+simpleOperation = (identifier | const) arithmeticOperator (identifier | const) {arithmeticOperator (identifier | const)}
+
+# Assignment
+assignment = lhs assignmentOperator rhs | readStatement .
+lhs = identifier | declaration .
+rhs = (identifier | const) | simpleOperation .
+
+# Declaration
+declarationList = declaration ";" | declaration ";" declarationList .
+declaration = "[" type "]" identifier .
+
+# Type
+type = "int" | "string" | "bool" | "array" .
+
+# IOStatement
+ioStatement = readStatement ";" | writeStatement ";" .
+readStatement = lhs assignmentOperator "Read-Host" .
+writeStatement = "Write-Host" (identifier | const | const_string) .
+
+# If
+ifStatement = "if(" compoundCondition ") {" statementList "}" .
+
+# While
+whileStatement = "while(" compoundCondition ") {" statementList "}" .
+
+# Condition
+compoundCondition = condition | "(" compoundCondition ")" logicalOperator "(" compoundCondition ")"
+condition = (identifier | const) equalityOperator (identifier | const) .
+
+# Operators
+equalityOperator = "-lt" | "-le" | "-eq" | "-ne" | "-gt" | "-ge"
+logicalOperator = "-and" | "-or" .
+arithmeticOperator = "+" | "-" | "*" | "/" | "%" .
+assignmentOperator = "=" .
+
+## Lexical rules
+identifier = "$" letter { (letter | digit) } .
+letter = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z" .
+digit = "0" | "1" | ... | "9" .
+const_string = "\"" { (letter | digit ) } "\""
+const = ("1" | "2" | ... | "9" ) {digit}

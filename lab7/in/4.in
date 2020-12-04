@@ -1,0 +1,6 @@
+[int]$n = Read-Host;[int]$i = 0;[int]$sum = 0;
+cattimp ($i -lt $n) executa
+    [int]$temp = Read-Host;
+sfcattimp
+
+Write-Host $sum;
