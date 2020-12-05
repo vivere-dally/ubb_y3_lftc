@@ -32,7 +32,7 @@ operand = ( identifier | const ) .
 
 # START  === io
 ioStatement = ( read | write ) ";" .
-read = lhs " Read-Host" .
+read = lhs assignmentOperator " Read-Host" .
 write = "Write-Host " rhs .
 # FINISH === io
 

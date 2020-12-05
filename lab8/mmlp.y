@@ -56,7 +56,7 @@ ioStatement                    : read SEMICOLON
                                | write SEMICOLON
                                ;
 
-read                           : lhs READ_HOST
+read                           : lhs ASSIGNMENT_OPERATOR READ_HOST
                                ;
 
 write                          : WRITE_HOST rhs
@@ -80,7 +80,7 @@ arithmeticOperator             : PLUS
 void yyerror(char *s)
 {
     has_errors = 1;
-	fprintf(stderr, "%s\n", s);
+	printf("%s\n", s);
 }
 
 int main(int argc, char** argv) {
