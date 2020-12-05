@@ -126,7 +126,7 @@ arithmeticOperator                                    : PLUS                    
 void yyerror(char *s)
 {
     has_errors = 1;
-	fprintf(stderr, "%s\n", s);
+	printf("%s\n", s);
 }
 
 int main(int argc, char** argv) {

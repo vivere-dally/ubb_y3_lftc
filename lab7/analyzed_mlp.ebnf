@@ -52,5 +52,5 @@ assignmentOperator = "=" .
 identifier = "$" letter { (letter | digit) } .
 letter = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z" .
 digit = "0" | "1" | ... | "9" .
-const_string = "\"" { (letter | digit ) } "\""
-const = ("1" | "2" | ... | "9" ) {digit}
+const = ["-"] {digit} [ ( "kb" | "mb" | "gb" | "tb" | "pb" ) ] .
+const_string = "\"" { (letter | digit ) } "\"" .
