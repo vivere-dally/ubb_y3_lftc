@@ -1,0 +1,50 @@
+### EBNF
+### MINI MINI PROGRAMMING LANGUAGE FROM POWERSHELL
+
+## Syntactic rules
+
+# START
+program = { statement } .
+
+
+# START  === statement
+statement = declarationStatement | assignmentStatement | ioStatement .
+# FINISH === statement
+
+
+# START  === declaration
+declarationStatement = declaration { "," identifier } ";" .
+
+declaration = "[int]" identifier .
+# FINISH  === declaration
+
+
+# START  === assignment
+assignmentStatement = lhs assignmentOperator rhs ";" .
+
+lhs = identifier | declaration .
+
+rhs = operand { arithmeticOperator operand } .
+
+operand = ( identifier | const ) .
+# FINISH === assignment
+
+
+# START  === io
+ioStatement = ( read | write ) ";" .
+read = lhs " Read-Host" .
+write = "Write-Host " rhs .
+# FINISH === io
+
+
+# START  === operators
+arithmeticOperator = "+" | "-" | "*" | "/" | "%" | "-band" | "-bnot" | "-bor" | "-bxor" | "-shl" | "-shr" .
+assignmentOperator = "=" .
+# FINISH === operators
+
+
+## Lexical rules
+identifier = "$" letter { ( letter | digit ) } .
+letter = "A" | "B" | ... | "Z" | "a" | "b" | ... | "z" .
+digit = "0" | "1" | ... | "9" .
+const = [ "-" ] { digit } [ ( "kb" | "mb" | "gb" | "tb" | "pb" ) ] .
