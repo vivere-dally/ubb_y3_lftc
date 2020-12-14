@@ -59,7 +59,7 @@ struct kvp *add(char *key, int value)
     }
     else /* already there */
     {
-        np->value = value; /*free previous value */
+        np->value = value;
     }
     return np;
 }
