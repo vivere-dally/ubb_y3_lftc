@@ -162,21 +162,19 @@ class Grammar:
         Class that represents a context-free grammar (CFG).
     """
 
-    def __init__(self, nonterminals: List[Nonterminal], terminals: List[Terminal], production_rules: List[ProductionRule]):
+    def __init__(self, nonterminals: List[Nonterminal], terminals: List[Terminal],
+                 production_rules: List[ProductionRule]):
         self.__nonterminals = nonterminals
         self.__terminals = terminals
         self.__production_rules = production_rules
         self.__start_symbol = self.__production_rules[0].lhs
 
         self.__first: Dict[Nonterminal, Set[Symbol]] = {}
-        self.__compute_first_wrapper()
-
         self.__follow: Dict[Nonterminal, Set[Symbol]] = {}
-        self.__compute_follow_wrapper()
 
-# region First
+    # region First
 
-    def __compute_first_wrapper(self):
+    def compute_first_wrapper(self):
         for nonterminal in self.__nonterminals:
             if nonterminal in self.__first:
                 pass
@@ -220,9 +218,10 @@ class Grammar:
 
         self.__first[nonterminal] = current_first
 
-# endregion
+    # endregion
 
-    def __compute_follow_wrapper(self):
+    # region Follow
+    def compute_follow_wrapper(self):
         self.__compute_follow_nonterminal(self.__start_symbol)
         self.__follow[self.__start_symbol].add(Dollar())
 
@@ -239,6 +238,7 @@ class Grammar:
         for production_rule in production_rules:
             follow_rhs = []
             ignore = True
+            symbol = None
             for symbol in production_rule.rhs:
                 if not ignore:
                     follow_rhs.append(symbol)
@@ -275,8 +275,9 @@ class Grammar:
 
         self.__follow[nonterminal] = current_follow
 
+    # endregion
 
-# region Getters and Setters
+    # region Getters and Setters
 
     @property
     def nonterminals(self) -> List[Nonterminal]:
@@ -292,7 +293,7 @@ class Grammar:
 
     @terminals.setter
     def terminals(self, value: List[Terminal]):
-        return self.__terminals
+        self.__terminals = value
 
     @property
     def production_rules(self) -> List[ProductionRule]:
@@ -310,13 +311,17 @@ class Grammar:
     def follow(self) -> Dict[Nonterminal, Set[Symbol]]:
         return self.__follow
 
-# endregion
+    @property
+    def start_symbol(self) -> Nonterminal:
+        return self.__start_symbol
+
+    # endregion
 
     def __repr__(self):
         newline = '\n'
         return f"Nonterminals: {', '.join(repr(nonterminal) for nonterminal in self.__nonterminals)}\n" + \
-            f"Terminals: {', '.join(repr(terminal) for terminal in self.__terminals)}\n" + \
-            f"Production rules:\n{newline.join(repr(production_rule) for production_rule in self.__production_rules)}\n"
+               f"Terminals: {', '.join(repr(terminal) for terminal in self.__terminals)}\n" + \
+               f"Production rules:\n{newline.join(repr(production_rule) for production_rule in self.__production_rules)}\n"
 
     def __str__(self):
         return repr(self)
@@ -391,7 +396,8 @@ class Grammar:
         return set()
 
     def get_follow_of_nonterminal(self, nonterminal: Nonterminal) -> Set[Symbol]:
-        if nonterminal in self.__follow:
-            return self.__follow[nonterminal]
+        for k, v in self.__follow.items():
+            if k.symbol == nonterminal.symbol:
+                return v
 
         return set()
