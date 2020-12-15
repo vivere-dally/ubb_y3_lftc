@@ -4,10 +4,18 @@ from grammar.utils import load_grammar
 
 
 if __name__ == '__main__':
+    # grammar_path = os.path.join(
+    #     os.getcwd(), 'lab9', 'grammars', 'mlp.grammar.in')
     grammar_path = os.path.join(
-        os.getcwd(), 'lab9', 'grammars', 'mlp.grammar.in')
+        os.getcwd(), 'lab9', 'grammars', 'first-test.in')
     grammar = load_grammar(grammar_path)
     print(repr(grammar))
+    print()
+    print()
+    print(grammar.first)
+    print()
+    print()
+    print(grammar.follow)
     menu = "\n\n1. Production rules by LHS Nonterminal.\n2. Production rules by RHS Nonterminal.\n3. Production rules by RHS Terminal.\n>> "
     newline = '\n'
     while True:

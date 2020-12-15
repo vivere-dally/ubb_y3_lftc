@@ -1,0 +1,6 @@
+S->A B C D E
+A->a|epsilon
+B->b|epsilon
+C->c
+D->d|epsilon
+E->e|epsilon

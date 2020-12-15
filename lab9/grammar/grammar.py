@@ -167,8 +167,12 @@ class Grammar:
         self.__terminals = terminals
         self.__production_rules = production_rules
         self.__first: Dict[Nonterminal, Set[Symbol]] = {}
-        self.__compute_first()
+        self.__compute_first_wrapper()
         self.__follow: Dict[Nonterminal, Set[Symbol]] = {}
+        self.__follow[self.__production_rules[0].lhs] = set([Dollar()])
+        self.__compute_follow_wrapper()
+
+# region First
 
     def __compute_first_wrapper(self):
         for nonterminal in self.__nonterminals:
@@ -182,28 +186,87 @@ class Grammar:
         production_rules = self.get_production_rules_by_lhs_nonterminal(
             nonterminal)
         for production_rule in production_rules:
-            first_rhs = production_rule.rhs[0]
-            if isinstance(first_rhs, Terminal):
-                current_first.add(first_rhs)
-            elif isinstance(first_rhs, Nonterminal):
-                for symbol in production_rule.rhs:
-                    self.__compute_first_nonterminal(self, first_rhs)
-                    for symbol in self.get_first_of_nonterminal(first_rhs):
-                        if isinstance(symbol, Epsilon):
-                            break
+            for symbol in production_rule.rhs:
+                computed_all = True
+                if isinstance(symbol, Terminal):
+                    current_first.add(symbol)
+                    break
+                elif isinstance(symbol, Nonterminal):
+                    self.__compute_first_nonterminal(symbol)
+                    for symbol_ in self.get_first_of_nonterminal(symbol):
+                        if isinstance(symbol_, Epsilon):
+                            computed_all = False
                         else:
-                            current_first.add(symbol)
-            elif isinstance(first_rhs, Epsilon):
-                current_first.add(first_rhs)
+                            current_first.add(symbol_)
+                elif isinstance(symbol, Epsilon):
+                    current_first.add(symbol)
+                    break
 
-        if nonterminal in self.__first:
-            self.__first[nonterminal] = self.__first[nonterminal].union(
-                current_first)
-        else:
-            self.__first[nonterminal] = current_first
+                if computed_all:
+                    break
 
-    def __compute_follow(self):
-        pass
+                if symbol == production_rule.rhs[-1]:
+                    if production_rule.lhs not in self.__first:
+                        self.__compute_first_nonterminal(production_rule.lhs)
+
+                    current_first = current_first.union(
+                        self.get_first_of_nonterminal(production_rule.lhs))
+
+        self.__first[nonterminal] = current_first
+
+# endregion
+
+    def __compute_follow_wrapper(self):
+        for nonterminal in self.__nonterminals:
+            if nonterminal in self.__follow:
+                pass
+            else:
+                self.__compute_follow_nonterminal(nonterminal)
+
+    def __compute_follow_nonterminal(self, nonterminal: Nonterminal):
+        current_follow = set()
+        production_rules = self.get_production_rules_by_rhs_nonterminal(
+            nonterminal)
+        for production_rule in production_rules:
+            follow_rhs = []
+            ignore = True
+            for symbol in production_rule.rhs:
+                if not ignore:
+                    follow_rhs.append(symbol)
+
+                if symbol == nonterminal:
+                    ignore = False
+
+            for symbol in follow_rhs:
+                computed_all = True
+                if isinstance(symbol, Terminal):
+                    current_follow.add(symbol)
+                    break
+                elif isinstance(symbol, Nonterminal):
+                    first = self.get_first_of_nonterminal(symbol)
+                    for symbol_ in first:
+                        if isinstance(symbol_, Terminal):
+                            current_follow.add(symbol_)
+                        elif isinstance(symbol_, Epsilon):
+                            computed_all = False
+                            break
+
+                if computed_all:
+                    break
+
+                if symbol == follow_rhs[-1]:
+                    if symbol == production_rule.lhs:
+                        break
+                    else:
+                        if production_rule.lhs not in self.__follow:
+                            self.__compute_follow_nonterminal(
+                                production_rule.lhs)
+
+                        current_follow = current_follow.union(
+                            self.get_follow_of_nonterminal(production_rule.lhs))
+
+        self.__follow[nonterminal] = current_follow
+
 
 # region Getters and Setters
 
@@ -230,6 +293,14 @@ class Grammar:
     @production_rules.setter
     def production_rules(self, value: List[ProductionRule]):
         self.__production_rules = value
+
+    @property
+    def first(self) -> Dict[Nonterminal, Set[Symbol]]:
+        return self.__first
+    
+    @property
+    def follow(self) -> Dict[Nonterminal, Set[Symbol]]:
+        return self.__follow
 
 # endregion
 

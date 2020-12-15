@@ -23,3 +23,11 @@ Operatii cerute:
   Date de test:
 - Cel putin 2 gramatici (fisierele de intrare corespunzatoare), unul
   dintre ele fiind gramatica MLP din prima tema de laborator
+
+
+
+CONVENȚII:
+
+* grammar are forma: Neterminal->symbol { ' ' symbol } { '|' symbol { ' ' symbol } }
+* symbol are forma: alphabeticChar | _ | epsilon
+* prima regulă de producție se consideră a fi regula de start
