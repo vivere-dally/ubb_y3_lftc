@@ -166,10 +166,13 @@ class Grammar:
         self.__nonterminals = nonterminals
         self.__terminals = terminals
         self.__production_rules = production_rules
+        self.__start_symbol = self.__production_rules[0].lhs
+
         self.__first: Dict[Nonterminal, Set[Symbol]] = {}
         self.__compute_first_wrapper()
+
         self.__follow: Dict[Nonterminal, Set[Symbol]] = {}
-        self.__follow[self.__production_rules[0].lhs] = set([Dollar()])
+        self.__follow[self.__start_symbol] = set([Dollar()])
         self.__compute_follow_wrapper()
 
 # region First
@@ -192,7 +195,9 @@ class Grammar:
                     current_first.add(symbol)
                     break
                 elif isinstance(symbol, Nonterminal):
-                    self.__compute_first_nonterminal(symbol)
+                    if symbol not in self.__first:
+                        self.__compute_first_nonterminal(symbol)
+
                     for symbol_ in self.get_first_of_nonterminal(symbol):
                         if isinstance(symbol_, Epsilon):
                             computed_all = False
@@ -249,21 +254,20 @@ class Grammar:
                             current_follow.add(symbol_)
                         elif isinstance(symbol_, Epsilon):
                             computed_all = False
-                            break
 
                 if computed_all:
                     break
 
-                if symbol == follow_rhs[-1]:
-                    if symbol == production_rule.lhs:
-                        break
-                    else:
-                        if production_rule.lhs not in self.__follow:
-                            self.__compute_follow_nonterminal(
-                                production_rule.lhs)
+            if symbol == production_rule.rhs[-1]:
+                if symbol == production_rule.lhs:
+                    break
+                else:
+                    if production_rule.lhs not in self.__follow:
+                        self.__compute_follow_nonterminal(
+                            production_rule.lhs)
 
-                        current_follow = current_follow.union(
-                            self.get_follow_of_nonterminal(production_rule.lhs))
+                    current_follow = current_follow.union(
+                        self.get_follow_of_nonterminal(production_rule.lhs))
 
         self.__follow[nonterminal] = current_follow
 
@@ -297,7 +301,7 @@ class Grammar:
     @property
     def first(self) -> Dict[Nonterminal, Set[Symbol]]:
         return self.__first
-    
+
     @property
     def follow(self) -> Dict[Nonterminal, Set[Symbol]]:
         return self.__follow
