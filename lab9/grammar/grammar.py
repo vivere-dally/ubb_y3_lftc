@@ -33,7 +33,7 @@ class Terminal(Symbol):
 
     @staticmethod
     def is_terminal(s: str) -> bool:
-        return re.match('[a-z_]+', s) is not None and s.islower()
+        return re.match('[^A-Z]+', s) is not None
 
     def __eq__(self, other) -> bool:
         return isinstance(other, Terminal) and self._symbol == other._symbol
@@ -172,7 +172,6 @@ class Grammar:
         self.__compute_first_wrapper()
 
         self.__follow: Dict[Nonterminal, Set[Symbol]] = {}
-        self.__follow[self.__start_symbol] = set([Dollar()])
         self.__compute_follow_wrapper()
 
 # region First
@@ -211,8 +210,10 @@ class Grammar:
                     break
 
                 if symbol == production_rule.rhs[-1]:
-                    if production_rule.lhs not in self.__first:
+                    if production_rule.lhs not in self.__first and production_rule.lhs != nonterminal:
                         self.__compute_first_nonterminal(production_rule.lhs)
+                    else:
+                        current_first.add(Epsilon())
 
                     current_first = current_first.union(
                         self.get_first_of_nonterminal(production_rule.lhs))
@@ -222,6 +223,9 @@ class Grammar:
 # endregion
 
     def __compute_follow_wrapper(self):
+        self.__compute_follow_nonterminal(self.__start_symbol)
+        self.__follow[self.__start_symbol].add(Dollar())
+
         for nonterminal in self.__nonterminals:
             if nonterminal in self.__follow:
                 pass
@@ -258,7 +262,7 @@ class Grammar:
                 if computed_all:
                     break
 
-            if symbol == production_rule.rhs[-1]:
+            if symbol == production_rule.rhs[-1] and isinstance(symbol, Nonterminal):
                 if symbol == production_rule.lhs:
                     break
                 else:

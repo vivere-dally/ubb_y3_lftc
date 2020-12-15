@@ -1,0 +1,5 @@
+E->T A
+A->+ T A|epsilon
+T->F B
+B->* F B|epsilon
+F->id|( E )
