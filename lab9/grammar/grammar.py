@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict, Set
 from uuid import uuid1, UUID
 import re
 
@@ -98,6 +98,27 @@ class Epsilon(Symbol):
         return f'{self._symbol}'
 
 
+class Dollar(Symbol):
+    def __init__(self):
+        super(Dollar, self).__init__("$")
+
+    @staticmethod
+    def is_dollar(s: str) -> bool:
+        return s == "$"
+
+    def __eq__(self, other) -> bool:
+        return isinstance(other, Dollar) and self._symbol == other._symbol
+
+    def __ne__(self, other) -> bool:
+        return not self == other
+
+    def __hash__(self):
+        return hash(self._symbol)
+
+    def __repr__(self):
+        return f'{self._symbol}'
+
+
 class ProductionRule:
     """
         Class that represents a context-free grammar (CFG) production rule.
@@ -145,6 +166,44 @@ class Grammar:
         self.__nonterminals = nonterminals
         self.__terminals = terminals
         self.__production_rules = production_rules
+        self.__first: Dict[Nonterminal, Set[Symbol]] = {}
+        self.__compute_first()
+        self.__follow: Dict[Nonterminal, Set[Symbol]] = {}
+
+    def __compute_first_wrapper(self):
+        for nonterminal in self.__nonterminals:
+            if nonterminal in self.__first:
+                pass
+            else:
+                self.__compute_first_nonterminal(nonterminal)
+
+    def __compute_first_nonterminal(self, nonterminal: Nonterminal):
+        current_first = set()
+        production_rules = self.get_production_rules_by_lhs_nonterminal(
+            nonterminal)
+        for production_rule in production_rules:
+            first_rhs = production_rule.rhs[0]
+            if isinstance(first_rhs, Terminal):
+                current_first.add(first_rhs)
+            elif isinstance(first_rhs, Nonterminal):
+                for symbol in production_rule.rhs:
+                    self.__compute_first_nonterminal(self, first_rhs)
+                    for symbol in self.get_first_of_nonterminal(first_rhs):
+                        if isinstance(symbol, Epsilon):
+                            break
+                        else:
+                            current_first.add(symbol)
+            elif isinstance(first_rhs, Epsilon):
+                current_first.add(first_rhs)
+
+        if nonterminal in self.__first:
+            self.__first[nonterminal] = self.__first[nonterminal].union(
+                current_first)
+        else:
+            self.__first[nonterminal] = current_first
+
+    def __compute_follow(self):
+        pass
 
 # region Getters and Setters
 
@@ -245,3 +304,15 @@ class Grammar:
                 matching_production_rules.append(production_rule)
 
         return matching_production_rules
+
+    def get_first_of_nonterminal(self, nonterminal: Nonterminal) -> Set[Symbol]:
+        if nonterminal in self.__first:
+            return self.__first[nonterminal]
+
+        return set()
+
+    def get_follow_of_nonterminal(self, nonterminal: Nonterminal) -> Set[Symbol]:
+        if nonterminal in self.__follow:
+            return self.__follow[nonterminal]
+
+        return set()
