@@ -19,21 +19,21 @@ if __name__ == '__main__':
         symbol = input("Enter query symbol.\n>> ").strip().rstrip()
         production_rules = []
         if command == 1:
-            if not Nonterminal.is_nonterminal(symbol):
+            if not Nonterminal.check_symbol(symbol):
                 break
 
             nonterminal = Nonterminal(symbol)
             production_rules = grammar.get_production_rules_by_lhs_nonterminal(
                 nonterminal)
         elif command == 2:
-            if not Nonterminal.is_nonterminal(symbol):
+            if not Nonterminal.check_symbol(symbol):
                 break
 
             nonterminal = Nonterminal(symbol)
             production_rules = grammar.get_production_rules_by_rhs_nonterminal(
                 nonterminal)
         elif command == 3:
-            if not Terminal.is_terminal(symbol):
+            if not Terminal.check_symbol(symbol):
                 break
 
             terminal = Terminal(symbol)

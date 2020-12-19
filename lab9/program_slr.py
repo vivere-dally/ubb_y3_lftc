@@ -3,18 +3,23 @@ import os
 from typing import List
 
 from grammar.utils import load_grammar
-from lab9.grammar.grammar import Grammar, Nonterminal, Symbol, Epsilon, Terminal
-from lab9.slr.slr import SLR
+from lab9.slr.filters import is_left_recursive, is_deterministic
+from lab9.slr.first_and_follow import FnF
+from lab9.grammar.grammar import Grammar
+from lab9.grammar.symbols.epsilon import Epsilon
+from lab9.grammar.symbols.nonterminal import Nonterminal
+from lab9.grammar.symbols.symbol import Symbol
+from lab9.grammar.symbols.terminal import Terminal
 
 
 def parse_line(sequence: str) -> List[Symbol]:
     symbols = []
     for seq in sequence.split(' '):
-        if Epsilon.is_epsilon(seq):
+        if Epsilon.check_symbol(seq):
             symbols.append(Epsilon())
-        elif Nonterminal.is_nonterminal(seq):
+        elif Nonterminal.check_symbol(seq):
             symbols.append(Nonterminal(seq))
-        elif Terminal.is_terminal(seq):
+        elif Terminal.check_symbol(seq):
             symbols.append(Terminal(seq))
         else:
             raise RuntimeError('BAD INPUT!')
@@ -23,20 +28,27 @@ def parse_line(sequence: str) -> List[Symbol]:
 
 
 if __name__ == '__main__':
-    grammar_path = os.path.join(os.getcwd(), 'grammars', 'fifth-test.in')
+    grammar_path = os.path.join(os.getcwd(), 'grammars', 'test.in')
+
     grammar: Grammar = load_grammar(grammar_path)
-    grammar.compute_first_wrapper()
-    grammar.compute_follow_wrapper()
     print(repr(grammar))
-    print(grammar.first)
-    print(grammar.follow)
-    slr = SLR(grammar)
-    print()
 
-    menu = "\n\nSequence to be checked\n>> "
-    while True:
-        line = input(menu)
-        if not line:
-            break
+    if not is_left_recursive(grammar):
+        raise RuntimeError('The given grammar is left recursive!')
 
-        print(slr.parse(parse_line(line)))
+    if not is_deterministic(grammar):
+        raise RuntimeError('The given grammar is non-deterministic!')
+
+    fnf: FnF = FnF(grammar)
+    print(repr(fnf))
+
+    # slr = SLR(grammar)
+    # print()
+    #
+    # menu = "\n\nSequence to be checked\n>> "
+    # while True:
+    #     line = input(menu)
+    #     if not line:
+    #         break
+    #
+    #     print(slr.parse(parse_line(line)))

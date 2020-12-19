@@ -1,4 +1,8 @@
-from grammar.grammar import Grammar, Terminal, Nonterminal, Epsilon, ProductionRule
+from lab9.grammar.grammar import Grammar
+from lab9.grammar.production_rule import ProductionRule
+from lab9.grammar.symbols.epsilon import Epsilon
+from lab9.grammar.symbols.nonterminal import Nonterminal
+from lab9.grammar.symbols.terminal import Terminal
 
 
 class LoadGrammarError(RuntimeError):
@@ -30,7 +34,7 @@ def load_grammar(path: str) -> Grammar:
                 line = line.strip().rstrip()
                 if line:
                     lhs, rhs = line.split('->')
-                    if not Nonterminal.is_nonterminal(lhs) or Epsilon.is_epsilon(lhs):
+                    if not Nonterminal.check_symbol(lhs) or Epsilon.check_symbol(lhs):
                         raise LoadGrammarError()
 
                     lhs_nonterminal = Nonterminal(lhs)
@@ -40,16 +44,16 @@ def load_grammar(path: str) -> Grammar:
                         rhs_ = rhs_.split(' ')  # Multiple symbols
                         rhs_list = []
                         for rhs__ in rhs_:
-                            if Epsilon.is_epsilon(rhs__):
+                            if Epsilon.check_symbol(rhs__):
                                 # Add to current production rule rhs list
                                 rhs_list.append(Epsilon())
-                            elif Nonterminal.is_nonterminal(rhs__):
+                            elif Nonterminal.check_symbol(rhs__):
                                 nonterminal = Nonterminal(rhs__)
                                 # Add to nonterminals set
                                 nonterminals.add(nonterminal)
                                 # Add to current production rule rhs list
                                 rhs_list.append(nonterminal)
-                            elif Terminal.is_terminal(rhs__):
+                            elif Terminal.check_symbol(rhs__):
                                 terminal = Terminal(rhs__)
                                 # Add to terminals set
                                 terminals.add(terminal)

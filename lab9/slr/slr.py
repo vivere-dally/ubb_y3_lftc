@@ -117,7 +117,8 @@ class Closure:
             return []
 
         symbol = lr0item.current_symbol
-        if Nonterminal.is_nonterminal(symbol.symbol):
+        # if Nonterminal.is_nonterminal(symbol.symbol):
+        if isinstance(symbol, Nonterminal):
             for production_rule in self.__grammar.get_production_rules_by_lhs_nonterminal(symbol):
                 new_lr0item = LR0Item(production_rule)
                 new_lr0items.append(new_lr0item)
