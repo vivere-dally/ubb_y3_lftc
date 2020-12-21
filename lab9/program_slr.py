@@ -10,7 +10,7 @@ from lab9.grammar.symbols.epsilon import Epsilon
 from lab9.grammar.symbols.nonterminal import Nonterminal
 from lab9.grammar.symbols.symbol import Symbol
 from lab9.grammar.symbols.terminal import Terminal
-from lab9.slr.new_slr import SLR
+from lab9.slr.slr import SLR
 
 
 def parse_line(sequence: str) -> List[Symbol]:
