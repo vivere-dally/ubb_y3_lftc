@@ -165,8 +165,8 @@ class ParsingError(RuntimeError):
 class SLR:
     def __init__(self, grammar: Grammar):
         self.__grammar = grammar
-        self.__augmented_production = ProductionRule(Nonterminal(f"{grammar.start_symbol.symbol}'"),
-                                                     [grammar.start_symbol])
+        self.__augmented_symbol = Nonterminal(f"{grammar.start_symbol.symbol}")
+        self.__augmented_production = ProductionRule(self.__augmented_symbol, [grammar.start_symbol])
 
         start_closure = Closure(self.__grammar, [LR0Item(self.__augmented_production)])
         self.__unbuilt_closures = deque([start_closure])

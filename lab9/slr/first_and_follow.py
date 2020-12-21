@@ -88,8 +88,9 @@ class FnF:
                         s_first = self.get_first_of_nonterminal(symbol).copy()
                         if epsilon not in s_first:
                             nt_follow = nt_follow.union(s_first)
-                            check_lhs = False
-                            break
+                            if symbol != rhs[-1]:
+                                check_lhs = False
+                                break
                         else:
                             s_first.remove(epsilon)
                             nt_follow = nt_follow.union(s_first)

@@ -10,6 +10,7 @@ from lab9.grammar.symbols.epsilon import Epsilon
 from lab9.grammar.symbols.nonterminal import Nonterminal
 from lab9.grammar.symbols.symbol import Symbol
 from lab9.grammar.symbols.terminal import Terminal
+from lab9.slr.new_slr import SLR
 
 
 def parse_line(sequence: str) -> List[Symbol]:
@@ -42,13 +43,14 @@ if __name__ == '__main__':
     fnf: FnF = FnF(grammar)
     print(repr(fnf))
 
-    # slr = SLR(grammar)
-    # print()
-    #
-    # menu = "\n\nSequence to be checked\n>> "
-    # while True:
-    #     line = input(menu)
-    #     if not line:
-    #         break
-    #
-    #     print(slr.parse(parse_line(line)))
+    slr = SLR(grammar, fnf)
+
+    menu = "\n\nSequence to be checked\n>> "
+    while True:
+        line = input(menu)
+        if not line:
+            break
+
+        parsed_symbols = parse_line(line)
+        result = slr.parse(parsed_symbols)
+        print('\n'.join([str(r) for r in result]))
