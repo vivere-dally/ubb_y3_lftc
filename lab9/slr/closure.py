@@ -55,6 +55,15 @@ class Closure:
 
         return True
 
+    @property
+    def contains_epsilon(self) -> bool:
+        epsilon = Epsilon()
+        for lr0item in self.__lr0items:
+            if epsilon in lr0item.production_rule.rhs:
+                return True
+
+        return False
+
     def __eq__(self, other) -> bool:
         return isinstance(other, Closure) and self.__dict__ == other.__dict__
 

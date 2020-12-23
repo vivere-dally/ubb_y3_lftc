@@ -1,0 +1,4 @@
+A->id B
+A->epsilon
+B->, id B
+B->epsilon

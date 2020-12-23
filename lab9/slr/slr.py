@@ -98,13 +98,6 @@ class SLR:
         self.__parsing_table: List[Dict[Symbol, ParsingTableAction]] = []
         self.__build_parsing_table()
         # [print(x) for x in enumerate(self.__parsing_table)]  # print for debug
-        for index, closure in enumerate(self.__closures):
-            if ")" in repr(closure):
-                print(f"INDEX {index}\n{closure}\n")
-
-        for index, transition in enumerate(self.__transitions):
-            if ")" in repr(transition):
-                print(f"INDEX {index}\n{transition}\n")
 
     def __build_canonical_collection(self):
         """
@@ -118,13 +111,16 @@ class SLR:
             symbols = {}
             # Get non-final items' symbols from the closure
             for item in closure.lr0items:
-                if not item.is_final_item and item.current_symbol != Epsilon():
+                if not item.is_final_item:
+                    if item.current_symbol == Epsilon():
+                        continue
                     if item.current_symbol in symbols:
                         symbols[item.current_symbol].append(item)
                     else:
                         symbols[item.current_symbol] = [item]
 
             # Solve items
+            closure_index = self.__closures.index(closure)
             for symbol, items in symbols.items():
                 lr0items = []
                 for item in items:
@@ -135,7 +131,6 @@ class SLR:
                     self.__closures.append(new_closure)
                     dq.append(new_closure)
 
-                closure_index = self.__closures.index(closure)
                 new_closure_index = self.__closures.index(new_closure)
                 self.__transitions.append(ClosureTransition(symbol, closure_index, new_closure_index))
 
@@ -161,42 +156,55 @@ class SLR:
             symbol_action_dict = {}
             for symbol in all_symbols:
                 to_index = __find_transition__(symbol, index)
-                # No transition found, but the closure is final. It might be a Reduce or Accept.
-                if to_index == -1 and closure.is_final_closure:
-                    # If the closure has only one item and the current symbol is present in it's follow
-                    if len(closure.lr0items) == 1 and \
-                            symbol in self.__fnf.get_follow_of_nonterminal(closure.lr0items[0].production_rule.lhs):
 
-                        for follow_symbol in self.__fnf.get_follow_of_nonterminal(
-                                closure.lr0items[0].production_rule.lhs):
-                            symbol_action_dict[follow_symbol] = ParsingTableAction(
-                                # Take the index of the production rule with which we should reduce
-                                self.__grammar.production_rules.index(closure.lr0items[0].production_rule),
-                                ParsingTableActionState.REDUCE
-                            )
+                # No transition found
+                if to_index == -1:
 
-                    elif len(closure.lr0items) == 1:
-                        # If the symbol is Dollar and we are currently on the augmented production, then we accept.
-                        if closure.lr0items[0].production_rule == self.__augmented_production and symbol == Dollar():
+                    # Accept / Reduce / Error
+                    if closure.is_final_closure and len(closure.lr0items) == 1:
+
+                        # Accept
+                        if symbol == Dollar() and closure.lr0items[0].production_rule == self.__augmented_production:
                             symbol_action_dict[symbol] = ParsingTableAction(to_index, ParsingTableActionState.ACCEPT)
+
+                        # Reduce
+                        elif symbol in self.__fnf.get_follow_of_nonterminal(closure.lr0items[0].production_rule.lhs):
+                            for follow_symbol in self.__fnf.get_follow_of_nonterminal(
+                                    closure.lr0items[0].production_rule.lhs):
+                                symbol_action_dict[follow_symbol] = ParsingTableAction(
+                                    # Take the index of the production rule with which we should reduce
+                                    self.__grammar.production_rules.index(closure.lr0items[0].production_rule),
+                                    ParsingTableActionState.REDUCE
+                                )
+
                         # Error
                         else:
                             symbol_action_dict[symbol] = ParsingTableAction(to_index, ParsingTableActionState.ERROR)
 
-                    # If we have multiple items in a final closure, then we need to check for reduce reduce conflict.
+                    # Reduce - Epsilon case
+                    elif closure.contains_epsilon:
+                        epsilon = Epsilon()
+                        for item in closure.lr0items:
+                            if epsilon in item.production_rule.rhs:
+                                symbol_action_dict[symbol] = ParsingTableAction(
+                                    # Take the index of the production rule with which we should reduce
+                                    self.__grammar.production_rules.index(item.production_rule),
+                                    ParsingTableActionState.REDUCE
+                                )
+
+                    # Error / RR Conflict
                     else:
-                        follows_intersection = set.intersection(
-                            *[self.__fnf.get_follow_of_nonterminal(item.production_rule.lhs) for item
-                              in closure.lr0items])
+                        if closure.is_final_closure and len(closure.lr0items) > 1:
+                            follows_intersection = set.intersection(
+                                *[self.__fnf.get_follow_of_nonterminal(item.production_rule.lhs) for item
+                                  in closure.lr0items])
 
-                        if len(follows_intersection) == 0:
-                            print("HA HA HA! IT IZ WHAT IT IZ BOI.")
+                            if len(follows_intersection) == 0:
+                                print("HA HA HA! IT IZ WHAT IT IZ BOI.")
+                            else:
+                                raise ReduceReduceConflict(closure, symbol, index)
                         else:
-                            raise ReduceReduceConflict(closure, symbol, index)
-
-                # No transition found and the closure is not final. It must be an error.
-                elif to_index == -1:
-                    symbol_action_dict[symbol] = ParsingTableAction(to_index, ParsingTableActionState.ERROR)
+                            symbol_action_dict[symbol] = ParsingTableAction(to_index, ParsingTableActionState.ERROR)
 
                 # Shift/Goto
                 else:
@@ -235,9 +243,10 @@ class SLR:
             elif action.state == ParsingTableActionState.REDUCE:
                 production_rule = self.__grammar.production_rules[action.index]
                 result.append(f"REDUCE: use production rule {production_rule}.")
-                for _ in production_rule.rhs:  # Pop 2*len(rhs) items. Check if the pop item is == symbol.
-                    stack.pop()
-                    stack.pop()
+                if not Epsilon() in production_rule.rhs:
+                    for _ in production_rule.rhs:  # Pop 2*len(rhs) items.
+                        stack.pop()
+                        stack.pop()
 
                 result.append(f"-> STACK STATE: {stack}")
                 from_index = stack[-1]
