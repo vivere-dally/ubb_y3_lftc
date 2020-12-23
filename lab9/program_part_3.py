@@ -32,7 +32,7 @@ if __name__ == '__main__':
     print(" ".join([repr(item).split(':')[1] for item in buffer]))
     result = slr.parse(buffer)
     with open(result_out, 'w') as out:
-        for i in range(len(result), 2):
-            print(result[i])
-            print(result[i + 1])
-            print()
+        for i in range(0, len(result), 2):
+            out.write(f"{result[i]}\n{result[i + 1]}\n")
+
+        out.flush()

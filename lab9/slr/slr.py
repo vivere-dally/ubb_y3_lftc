@@ -99,10 +99,6 @@ class SLR:
         self.__build_parsing_table()
         # [print(x) for x in enumerate(self.__parsing_table)]  # print for debug
 
-        for index, closure in enumerate(self.__closures):
-            if 'LHS' in repr(closure):
-                print(f"{index} -> {closure}")
-
     def __build_canonical_collection(self):
         """
         Build canonical collection. TODO COMMENT

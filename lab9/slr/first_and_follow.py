@@ -125,7 +125,9 @@ class FnF:
     # endregion
 
     def __repr__(self):
-        return f"First: {repr(self.__first)}\nFollow: {repr(self.__follow)}"
+        newline = '\n'
+        return f"=== First ===\n{newline.join([repr(entry) for entry in self.__first.items()])}\n\n" \
+               f"=== Follow ===\n{newline.join([repr(entry) for entry in self.__follow.items()])} "
 
     def __str__(self):
         return repr(self)
