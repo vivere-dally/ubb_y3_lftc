@@ -1,5 +1,6 @@
 from collections import deque
 from enum import Enum
+from functools import reduce
 
 from typing import List, Dict, Deque, Union
 
@@ -163,10 +164,11 @@ class SLR:
 
         for index, closure in enumerate(self.__closures):
             # Check for RR Conflict
-            if closure.is_final_closure and len(closure.lr0items) > 1:
+            if closure.no_final_items >= 2:
+                final_items = filter(lambda item: item.is_final_item, closure.lr0items)
                 follows_intersection = set.intersection(
                     *[self.__fnf.get_follow_of_nonterminal(item.production_rule.lhs) for item
-                      in closure.lr0items])
+                      in final_items])
                 if len(follows_intersection) != 0:
                     raise ReduceReduceConflict(closure, index)
 

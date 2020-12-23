@@ -55,6 +55,15 @@ class Closure:
 
         return True
 
+    @property
+    def no_final_items(self) -> int:
+        i = 0
+        for lr0item in self.__lr0items:
+            if lr0item.is_final_item:
+                i += 1
+
+        return i
+
     def __eq__(self, other) -> bool:
         return isinstance(other, Closure) and self.__dict__ == other.__dict__
 
