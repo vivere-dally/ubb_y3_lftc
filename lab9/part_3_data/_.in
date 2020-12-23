@@ -1,8 +1,23 @@
-[int]$n = Read-Host;[int]$i = 0;[int]$sum = 0;
-while ($i -lt $n) {
-    [int]$temp = Read-Host;
-    $sum = ($sum + $temp);
-    $i = ($i + 1);
+param([int]$a,[int]$b,[int]$c)
+
+[int]$min = $a;
+[int]$max = $a;
+
+if ($b -lt $min) {
+    $min = $b;
 }
 
-Write-Host $sum;
+if ($c -lt $min) {
+    $min = $c;
+}
+
+if ($b -gt $max) {
+    $max = $b;
+}
+
+if ($c -gt $max) {
+    $max = $c;
+}
+
+Write-Host $min;
+Write-Host $max;
