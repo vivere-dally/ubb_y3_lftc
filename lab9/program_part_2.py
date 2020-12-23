@@ -29,7 +29,7 @@ def parse_line(sequence: str) -> List[Symbol]:
 
 
 if __name__ == '__main__':
-    grammar_path = os.path.join(os.getcwd(), 'grammars', 'epsilon-test.in')
+    grammar_path = os.path.join(os.getcwd(), 'grammars', 'assignment-test.in')
 
     grammar: Grammar = load_grammar(grammar_path)
     print(repr(grammar))
