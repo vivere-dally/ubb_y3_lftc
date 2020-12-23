@@ -16,7 +16,8 @@ class Terminal(Symbol):
 
     @staticmethod
     def check_symbol(s: str) -> bool:
-        return re.match('[^A-Z]+', s) is not None
+        # return re.match('[^A-Z]+', s) is not None
+        return True
 
     def __repr__(self):
         return f"t:{self._symbol}"

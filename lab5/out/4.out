@@ -1,0 +1,50 @@
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $n
+AS OPERATOR : 21 : =
+        IO : 32 : Read-Host
+ SEPARATOR :  4 : ;
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $i
+AS OPERATOR : 21 : =
+     CONST :  3 : 0
+ SEPARATOR :  4 : ;
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $sum
+AS OPERATOR : 21 : =
+     CONST :  3 : 0
+ SEPARATOR :  4 : ;
+  EXT STMT : 36 : cattimp
+ SEPARATOR :  5 : (
+        ID :  2 : $i
+EQ OPERATOR : 22 : -lt
+        ID :  2 : $n
+ SEPARATOR :  6 : )
+  EXT STMT : 37 : executa
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $temp
+AS OPERATOR : 21 : =
+        IO : 32 : Read-Host
+ SEPARATOR :  4 : ;
+  EXT STMT : 38 : sfcattimp
+        IO : 33 : Write-Host
+        ID :  2 : $sum
+ SEPARATOR :  4 : ;
+
+ === ID === 
+  4 : $temp
+  3 : $sum
+  2 : $i
+  1 : $n
+
+ === CONST === 
+  1 : 0
+
+ === STR CONST === 

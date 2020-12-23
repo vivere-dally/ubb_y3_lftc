@@ -3,7 +3,6 @@ from uuid import uuid1
 import pytest
 
 from lab9.grammar.production_rule import ProductionRule
-from lab9.grammar.symbols.epsilon import Epsilon
 from lab9.grammar.symbols.nonterminal import Nonterminal
 from lab9.grammar.symbols.symbol import Symbol
 from lab9.grammar.symbols.terminal import Terminal
@@ -46,7 +45,7 @@ class LR0Item:
 
     @property
     def is_final_item(self) -> bool:
-        return self.__dot_index == len(self.__production_rule.rhs) or self.current_symbol == Epsilon()
+        return self.__dot_index == len(self.__production_rule.rhs)
 
     def can_solve(self, symbol: Symbol) -> bool:
         if self.__production_rule.rhs[self.__dot_index] == symbol:

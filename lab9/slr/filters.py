@@ -18,6 +18,7 @@ def is_left_recursive(grammar: Grammar) -> bool:
 
     for pr in grammar.production_rules:
         if pr.lhs == pr.rhs[0]:
+            print(f"{pr.lhs} == {pr.rhs[0]}")
             return False
 
     return True
@@ -52,6 +53,7 @@ def is_deterministic(grammar: Grammar) -> bool:
                     alpha_s.add(alpha_)
 
             if len(alpha_l) != len(alpha_s):
+                print(f"{alpha_l} != {alpha_s}")
                 return False
 
     return True

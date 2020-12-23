@@ -50,7 +50,7 @@ class Closure:
     @property
     def is_final_closure(self) -> bool:
         for lr0item in self.__lr0items:
-            if not lr0item.is_final_item:
+            if not (lr0item.is_final_item or lr0item.current_symbol == Epsilon()):
                 return False
 
         return True

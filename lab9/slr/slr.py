@@ -97,7 +97,14 @@ class SLR:
         # Parsing table
         self.__parsing_table: List[Dict[Symbol, ParsingTableAction]] = []
         self.__build_parsing_table()
-        [print(x) for x in self.__parsing_table]  # print for debug
+        # [print(x) for x in enumerate(self.__parsing_table)]  # print for debug
+        for index, closure in enumerate(self.__closures):
+            if ")" in repr(closure):
+                print(f"INDEX {index}\n{closure}\n")
+
+        for index, transition in enumerate(self.__transitions):
+            if ")" in repr(transition):
+                print(f"INDEX {index}\n{transition}\n")
 
     def __build_canonical_collection(self):
         """
@@ -147,8 +154,8 @@ class SLR:
 
             return -1  # No transition found
 
-        all_symbols: List[Symbol] = self.__grammar.nonterminals
-        all_symbols.extend(self.__grammar.terminals)
+        all_symbols: List[Symbol] = self.__grammar.terminals
+        all_symbols.extend(self.__grammar.nonterminals)
         all_symbols.append(Dollar())
         for index, closure in enumerate(self.__closures):
             symbol_action_dict = {}
@@ -199,6 +206,7 @@ class SLR:
                         for item in closure.lr0items:
                             if item.is_final_item and \
                                     symbol in self.__fnf.get_follow_of_nonterminal(item.production_rule.lhs):
+                                print('uf')
                                 raise ShiftReduceConflict(closure, symbol, index)
 
                         symbol_action_dict[symbol] = ParsingTableAction(to_index, ParsingTableActionState.SHIFT)

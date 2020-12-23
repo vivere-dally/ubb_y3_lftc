@@ -1,0 +1,31 @@
+     PARAM : 35 : param
+ SEPARATOR :  5 : (
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $x
+ SEPARATOR :  4 : ;
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $y
+ SEPARATOR :  6 : )
+ STATEMENT : 30 : if
+ SEPARATOR :  5 : (
+        ID :  2 : $x
+EQ OPERATOR : 22 : -lt
+        ID :  2 : $y
+ SEPARATOR :  6 : )
+ SEPARATOR :  9 : {
+        IO : 33 : Write-Host
+ STR CONST :  1 : "Yes"
+ SEPARATOR : 10 : }
+
+ === ID === 
+  2 : $y
+  1 : $x
+
+ === CONST === 
+
+ === STR CONST === 
+  1 : "Yes"

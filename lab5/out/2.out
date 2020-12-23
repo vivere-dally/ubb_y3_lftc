@@ -1,0 +1,63 @@
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $n
+AS OPERATOR : 21 : =
+        IO : 32 : Read-Host
+ SEPARATOR :  4 : ;
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $i
+AS OPERATOR : 21 : =
+     CONST :  3 : 0
+ SEPARATOR :  4 : ;
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $sum
+AS OPERATOR : 21 : =
+     CONST :  3 : 0
+ SEPARATOR :  4 : ;
+ STATEMENT : 31 : while
+ SEPARATOR :  5 : (
+        ID :  2 : $i
+EQ OPERATOR : 22 : -lt
+        ID :  2 : $n
+ SEPARATOR :  6 : )
+ SEPARATOR :  9 : {
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $temp
+AS OPERATOR : 21 : =
+        IO : 32 : Read-Host
+ SEPARATOR :  4 : ;
+        ID :  2 : $sum
+AS OPERATOR : 21 : =
+        ID :  2 : $sum
+AR OPERATOR : 16 : +
+        ID :  2 : $temp
+ SEPARATOR :  4 : ;
+        ID :  2 : $i
+AS OPERATOR : 21 : =
+        ID :  2 : $i
+AR OPERATOR : 16 : +
+     CONST :  3 : 1
+ SEPARATOR :  4 : ;
+ SEPARATOR : 10 : }
+        IO : 33 : Write-Host
+        ID :  2 : $sum
+ SEPARATOR :  4 : ;
+
+ === ID === 
+  4 : $temp
+  3 : $sum
+  2 : $i
+  1 : $n
+
+ === CONST === 
+  2 : 1
+  1 : 0
+
+ === STR CONST === 
