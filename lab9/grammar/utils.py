@@ -47,7 +47,7 @@ def load_grammar(path: str) -> Grammar:
                             if Epsilon.check_symbol(rhs__):
                                 # Add to current production rule rhs list
                                 rhs_list.append(Epsilon())
-                                if len(rhs__) > 1:
+                                if len(rhs_) > 1:
                                     raise LoadGrammarError()
                             elif Nonterminal.check_symbol(rhs__):
                                 nonterminal = Nonterminal(rhs__)
