@@ -64,44 +64,64 @@ class FnF:
             __compute_first__(nonterminal)
 
     def __compute_follow(self):
+        def __split_rhs_by_duplicate_nonterminal__(pr: ProductionRule, nt: Nonterminal):
+            counter = 0
+            for s in pr.rhs:
+                if s == nt:
+                    counter += 1
+
+            if counter == 1:
+                return [pr]
+
+            prs = []
+            rhs = []
+            for i in range(len(pr.rhs) - 1, -1, -1):
+                rhs.insert(0, pr.rhs[i])
+                if pr.rhs[i] == nt:
+                    prs.append(ProductionRule(pr.lhs, rhs[:]))
+
+            return prs
+
         def __compute_follow__(nt: Nonterminal):
             if nt in computed_already:
                 return
 
             nt_follow = self.get_follow_of_nonterminal(nt)  # $ is added beforehand
             for pr in self.__grammar.get_production_rules_by_rhs_nonterminal(nt):
-                found_nt = False
-                rhs = []
-                for symbol in pr.rhs:
-                    if found_nt:
-                        rhs.append(symbol)
+                for __pr__ in __split_rhs_by_duplicate_nonterminal__(pr, nt):
+                    found_nt = False
+                    rhs = []
+                    for symbol in __pr__.rhs:
+                        if found_nt:
+                            rhs.append(symbol)
 
-                    if symbol == nt:
-                        found_nt = True
+                        if symbol == nt:
+                            found_nt = True
 
-                check_lhs = True
-                for symbol in rhs:
-                    if isinstance(symbol, Terminal):
-                        nt_follow.add(symbol)
-                        check_lhs = False
-                    elif isinstance(symbol, Nonterminal):
-                        s_first = self.get_first_of_nonterminal(symbol).copy()
-                        if epsilon not in s_first:
-                            nt_follow = nt_follow.union(s_first)
-                            if symbol != rhs[-1]:
-                                check_lhs = False
-                                break
-                        else:
-                            s_first.remove(epsilon)
-                            nt_follow = nt_follow.union(s_first)
-                            check_lhs = True
+                    check_lhs = True
+                    for symbol in rhs:
+                        if isinstance(symbol, Terminal):
+                            nt_follow.add(symbol)
+                            check_lhs = False
+                            break
+                        elif isinstance(symbol, Nonterminal):
+                            s_first = self.get_first_of_nonterminal(symbol).copy()
+                            if epsilon not in s_first:
+                                nt_follow = nt_follow.union(s_first)
+                                if symbol != rhs[-1]:
+                                    check_lhs = False
+                                    break
+                            else:
+                                s_first.remove(epsilon)
+                                nt_follow = nt_follow.union(s_first)
+                                check_lhs = True
 
-                if check_lhs:
-                    if pr.lhs not in computed_already and pr.lhs != nt:
-                        __compute_follow__(pr.lhs)
+                    if check_lhs:
+                        if __pr__.lhs not in computed_already and __pr__.lhs != nt:
+                            __compute_follow__(__pr__.lhs)
 
-                    lhs_follow = self.get_follow_of_nonterminal(pr.lhs).copy()
-                    nt_follow = nt_follow.union(lhs_follow)
+                        lhs_follow = self.get_follow_of_nonterminal(__pr__.lhs).copy()
+                        nt_follow = nt_follow.union(lhs_follow)
 
             computed_already.add(nt)
             self.__follow[nt] = nt_follow
@@ -528,6 +548,37 @@ class FnF:
                     Nonterminal('A'): {Dollar(), Terminal('g'), Terminal('h')},
                     Nonterminal('B'): {Dollar(), Terminal('g'), Terminal('h'), Terminal('a')},
                     Nonterminal('C'): {Dollar(), Terminal('g'), Terminal('h'), Terminal('b')}
+                }
+        ),
+        (
+                Grammar(
+                    [
+                        Nonterminal('S'),
+                        Nonterminal('A')
+                    ],
+                    [
+                        Terminal('a'),
+                        Terminal('b')
+                    ],
+                    [
+                        ProductionRule(Nonterminal('S'),
+                                       [
+                                           Nonterminal('A'),
+                                           Nonterminal('A'),
+                                           Terminal('b')
+                                       ]),
+                        ProductionRule(Nonterminal('A'),
+                                       [
+                                           Terminal('a')
+                                       ])
+                    ]),
+                {
+                    Nonterminal('S'): {Terminal('a')},
+                    Nonterminal('A'): {Terminal('a')}
+                },
+                {
+                    Nonterminal('S'): {Dollar()},
+                    Nonterminal('A'): {Terminal('a'), Terminal('b')}
                 }
         )
     ]
