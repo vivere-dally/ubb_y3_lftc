@@ -3,30 +3,95 @@
  SEPARATOR :  7 : [
       TYPE : 12 : int
  SEPARATOR :  8 : ]
-        ID :  2 : $x
+        ID :  2 : $a
  SEPARATOR : 11 : ,
  SEPARATOR :  7 : [
       TYPE : 12 : int
  SEPARATOR :  8 : ]
-        ID :  2 : $y
+        ID :  2 : $b
+ SEPARATOR : 11 : ,
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $c
  SEPARATOR :  6 : )
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $min
+AS OPERATOR : 21 : =
+        ID :  2 : $a
+ SEPARATOR :  4 : ;
+ SEPARATOR :  7 : [
+      TYPE : 12 : int
+ SEPARATOR :  8 : ]
+        ID :  2 : $max
+AS OPERATOR : 21 : =
+        ID :  2 : $a
+ SEPARATOR :  4 : ;
  STATEMENT : 30 : if
  SEPARATOR :  5 : (
-        ID :  2 : $x
+        ID :  2 : $b
 EQ OPERATOR : 22 : -lt
-        ID :  2 : $y
+        ID :  2 : $min
  SEPARATOR :  6 : )
  SEPARATOR :  9 : {
-        IO : 33 : Write-Host
- STR CONST :  1 : "Yes"
+        ID :  2 : $min
+AS OPERATOR : 21 : =
+AS OPERATOR : 21 : =
+        ID :  2 : $b
  SEPARATOR :  4 : ;
  SEPARATOR : 10 : }
+ STATEMENT : 30 : if
+ SEPARATOR :  5 : (
+        ID :  2 : $c
+EQ OPERATOR : 22 : -lt
+        ID :  2 : $min
+ SEPARATOR :  6 : )
+ SEPARATOR :  9 : {
+        ID :  2 : $min
+AS OPERATOR : 21 : =
+        ID :  2 : $c
+ SEPARATOR :  4 : ;
+ SEPARATOR : 10 : }
+ STATEMENT : 30 : if
+ SEPARATOR :  5 : (
+        ID :  2 : $b
+EQ OPERATOR : 26 : -gt
+        ID :  2 : $max
+ SEPARATOR :  6 : )
+ SEPARATOR :  9 : {
+        ID :  2 : $max
+AS OPERATOR : 21 : =
+        ID :  2 : $b
+ SEPARATOR :  4 : ;
+ SEPARATOR : 10 : }
+ STATEMENT : 30 : if
+ SEPARATOR :  5 : (
+        ID :  2 : $c
+EQ OPERATOR : 26 : -gt
+        ID :  2 : $max
+ SEPARATOR :  6 : )
+ SEPARATOR :  9 : {
+        ID :  2 : $max
+AS OPERATOR : 21 : =
+        ID :  2 : $c
+ SEPARATOR :  4 : ;
+ SEPARATOR : 10 : }
+        IO : 33 : Write-Host
+        ID :  2 : $min
+ SEPARATOR :  4 : ;
+        IO : 33 : Write-Host
+        ID :  2 : $max
+ SEPARATOR :  4 : ;
 
  === ID === 
-  2 : $y
-  1 : $x
+  5 : $max
+  4 : $min
+  3 : $c
+  2 : $b
+  1 : $a
 
  === CONST === 
 
  === STR CONST === 
-  1 : "Yes"

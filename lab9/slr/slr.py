@@ -1,6 +1,5 @@
 from collections import deque
 from enum import Enum
-from functools import reduce
 
 from typing import List, Dict, Deque, Union
 

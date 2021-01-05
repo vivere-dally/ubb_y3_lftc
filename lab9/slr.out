@@ -3,238 +3,1096 @@
 SHIFT: from 0 to 23 with t:param.
 === STEP 2 ===
 -> STACK STATE: deque([0, t:param, 23])
-SHIFT: from 23 to 49 with t:(.
+SHIFT: from 23 to 48 with t:(.
 === STEP 3 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49])
-SHIFT: from 49 to 2 with t:[.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48])
+SHIFT: from 48 to 2 with t:[.
 === STEP 4 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, t:[, 2])
-SHIFT: from 2 to 27 with t:int.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, t:[, 2])
+SHIFT: from 2 to 26 with t:int.
 === STEP 5 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, t:[, 2, t:int, 27])
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, t:[, 2, t:int, 26])
 REDUCE: use production rule T:TYPE->t:int.
 === STEP 6 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, t:[, 2, T:TYPE])
-GOTO: from 2 to 25 with T:TYPE.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, t:[, 2, T:TYPE])
+GOTO: from 2 to 24 with T:TYPE.
 === STEP 7 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, t:[, 2, T:TYPE, 25])
-SHIFT: from 25 to 50 with t:].
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, t:[, 2, T:TYPE, 24])
+SHIFT: from 24 to 49 with t:].
 === STEP 8 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, t:[, 2, T:TYPE, 25, t:], 50])
-SHIFT: from 50 to 67 with t:id.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, t:[, 2, T:TYPE, 24, t:], 49])
+SHIFT: from 49 to 66 with t:id.
 === STEP 9 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, t:[, 2, T:TYPE, 25, t:], 50, t:id, 67])
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, t:[, 2, T:TYPE, 24, t:], 49, t:id, 66])
 REDUCE: use production rule T:DECLARATION->t:[ T:TYPE t:] t:id.
 === STEP 10 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION])
-GOTO: from 49 to 65 with T:DECLARATION.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION])
+GOTO: from 48 to 64 with T:DECLARATION.
 === STEP 11 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65])
-SHIFT: from 65 to 83 with t:,.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64])
+SHIFT: from 64 to 82 with t:,.
 === STEP 12 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83])
-SHIFT: from 83 to 2 with t:[.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82])
+SHIFT: from 82 to 2 with t:[.
 === STEP 13 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, t:[, 2])
-SHIFT: from 2 to 27 with t:int.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, t:[, 2])
+SHIFT: from 2 to 26 with t:int.
 === STEP 14 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, t:[, 2, t:int, 27])
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, t:[, 2, t:int, 26])
 REDUCE: use production rule T:TYPE->t:int.
 === STEP 15 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, t:[, 2, T:TYPE])
-GOTO: from 2 to 25 with T:TYPE.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, t:[, 2, T:TYPE])
+GOTO: from 2 to 24 with T:TYPE.
 === STEP 16 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, t:[, 2, T:TYPE, 25])
-SHIFT: from 25 to 50 with t:].
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, t:[, 2, T:TYPE, 24])
+SHIFT: from 24 to 49 with t:].
 === STEP 17 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, t:[, 2, T:TYPE, 25, t:], 50])
-SHIFT: from 50 to 67 with t:id.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, t:[, 2, T:TYPE, 24, t:], 49])
+SHIFT: from 49 to 66 with t:id.
 === STEP 18 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, t:[, 2, T:TYPE, 25, t:], 50, t:id, 67])
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, t:[, 2, T:TYPE, 24, t:], 49, t:id, 66])
 REDUCE: use production rule T:DECLARATION->t:[ T:TYPE t:] t:id.
 === STEP 19 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, T:DECLARATION])
-GOTO: from 83 to 91 with T:DECLARATION.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION])
+GOTO: from 82 to 90 with T:DECLARATION.
 === STEP 20 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, T:DECLARATION, 91])
-REDUCE: use production rule T:FUNCTION_DECLARATION_LIST''->S:epsilon.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90])
+SHIFT: from 90 to 82 with t:,.
 === STEP 21 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, T:DECLARATION, 91, T:FUNCTION_DECLARATION_LIST''])
-GOTO: from 91 to 97 with T:FUNCTION_DECLARATION_LIST''.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82])
+SHIFT: from 82 to 2 with t:[.
 === STEP 22 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, t:,, 83, T:DECLARATION, 91, T:FUNCTION_DECLARATION_LIST'', 97])
-REDUCE: use production rule T:FUNCTION_DECLARATION_LIST''->t:, T:DECLARATION T:FUNCTION_DECLARATION_LIST''.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, t:[, 2])
+SHIFT: from 2 to 26 with t:int.
 === STEP 23 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, T:FUNCTION_DECLARATION_LIST''])
-GOTO: from 65 to 82 with T:FUNCTION_DECLARATION_LIST''.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, t:[, 2, t:int, 26])
+REDUCE: use production rule T:TYPE->t:int.
 === STEP 24 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:DECLARATION, 65, T:FUNCTION_DECLARATION_LIST'', 82])
-REDUCE: use production rule T:FUNCTION_DECLARATION_LIST'->T:DECLARATION T:FUNCTION_DECLARATION_LIST''.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, t:[, 2, T:TYPE])
+GOTO: from 2 to 24 with T:TYPE.
 === STEP 25 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST'])
-GOTO: from 49 to 66 with T:FUNCTION_DECLARATION_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, t:[, 2, T:TYPE, 24])
+SHIFT: from 24 to 49 with t:].
 === STEP 26 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST', 66])
-REDUCE: use production rule T:FUNCTION_DECLARATION_LIST->T:FUNCTION_DECLARATION_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, t:[, 2, T:TYPE, 24, t:], 49])
+SHIFT: from 49 to 66 with t:id.
 === STEP 27 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST])
-GOTO: from 49 to 64 with T:FUNCTION_DECLARATION_LIST.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, t:[, 2, T:TYPE, 24, t:], 49, t:id, 66])
+REDUCE: use production rule T:DECLARATION->t:[ T:TYPE t:] t:id.
 === STEP 28 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64])
-SHIFT: from 64 to 81 with t:).
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, T:DECLARATION])
+GOTO: from 82 to 90 with T:DECLARATION.
 === STEP 29 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81])
-SHIFT: from 81 to 16 with t:if.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, T:DECLARATION, 90])
+REDUCE: use production rule T:FUNCTION_DECLARATION_LIST''->S:epsilon.
 === STEP 30 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16])
-SHIFT: from 16 to 46 with t:(.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, T:DECLARATION, 90, T:FUNCTION_DECLARATION_LIST''])
+GOTO: from 90 to 96 with T:FUNCTION_DECLARATION_LIST''.
 === STEP 31 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46])
-SHIFT: from 46 to 42 with t:id.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, t:,, 82, T:DECLARATION, 90, T:FUNCTION_DECLARATION_LIST'', 96])
+REDUCE: use production rule T:FUNCTION_DECLARATION_LIST''->t:, T:DECLARATION T:FUNCTION_DECLARATION_LIST''.
 === STEP 32 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, t:id, 42])
-REDUCE: use production rule T:OPERAND->t:id.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, T:FUNCTION_DECLARATION_LIST''])
+GOTO: from 90 to 96 with T:FUNCTION_DECLARATION_LIST''.
 === STEP 33 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:OPERAND])
-GOTO: from 46 to 59 with T:OPERAND.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, t:,, 82, T:DECLARATION, 90, T:FUNCTION_DECLARATION_LIST'', 96])
+REDUCE: use production rule T:FUNCTION_DECLARATION_LIST''->t:, T:DECLARATION T:FUNCTION_DECLARATION_LIST''.
 === STEP 34 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:OPERAND, 59])
-SHIFT: from 59 to 73 with t:-lt.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, T:FUNCTION_DECLARATION_LIST''])
+GOTO: from 64 to 81 with T:FUNCTION_DECLARATION_LIST''.
 === STEP 35 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:OPERAND, 59, t:-lt, 73])
-REDUCE: use production rule T:EQUALITY_OPERATOR->t:-lt.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:DECLARATION, 64, T:FUNCTION_DECLARATION_LIST'', 81])
+REDUCE: use production rule T:FUNCTION_DECLARATION_LIST'->T:DECLARATION T:FUNCTION_DECLARATION_LIST''.
 === STEP 36 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:OPERAND, 59, T:EQUALITY_OPERATOR])
-GOTO: from 59 to 72 with T:EQUALITY_OPERATOR.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST'])
+GOTO: from 48 to 65 with T:FUNCTION_DECLARATION_LIST'.
 === STEP 37 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:OPERAND, 59, T:EQUALITY_OPERATOR, 72])
-SHIFT: from 72 to 42 with t:id.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST', 65])
+REDUCE: use production rule T:FUNCTION_DECLARATION_LIST->T:FUNCTION_DECLARATION_LIST'.
 === STEP 38 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:OPERAND, 59, T:EQUALITY_OPERATOR, 72, t:id, 42])
-REDUCE: use production rule T:OPERAND->t:id.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST])
+GOTO: from 48 to 63 with T:FUNCTION_DECLARATION_LIST.
 === STEP 39 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:OPERAND, 59, T:EQUALITY_OPERATOR, 72, T:OPERAND])
-GOTO: from 72 to 87 with T:OPERAND.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63])
+SHIFT: from 63 to 80 with t:).
 === STEP 40 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:OPERAND, 59, T:EQUALITY_OPERATOR, 72, T:OPERAND, 87])
-REDUCE: use production rule T:CONDITION''->T:OPERAND T:EQUALITY_OPERATOR T:OPERAND.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80])
+SHIFT: from 80 to 2 with t:[.
 === STEP 41 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION''])
-GOTO: from 46 to 60 with T:CONDITION''.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, t:[, 2])
+SHIFT: from 2 to 26 with t:int.
 === STEP 42 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION'', 60])
-REDUCE: use production rule T:CONDITION'->T:CONDITION''.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, t:[, 2, t:int, 26])
+REDUCE: use production rule T:TYPE->t:int.
 === STEP 43 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION'])
-GOTO: from 46 to 62 with T:CONDITION'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, t:[, 2, T:TYPE])
+GOTO: from 2 to 24 with T:TYPE.
 === STEP 44 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION', 62])
-REDUCE: use production rule T:CONDITION->T:CONDITION'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, t:[, 2, T:TYPE, 24])
+SHIFT: from 24 to 49 with t:].
 === STEP 45 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION])
-GOTO: from 46 to 58 with T:CONDITION.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, t:[, 2, T:TYPE, 24, t:], 49])
+SHIFT: from 49 to 66 with t:id.
 === STEP 46 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58])
-SHIFT: from 58 to 71 with t:).
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, t:[, 2, T:TYPE, 24, t:], 49, t:id, 66])
+REDUCE: use production rule T:DECLARATION->t:[ T:TYPE t:] t:id.
 === STEP 47 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71])
-SHIFT: from 71 to 86 with t:{.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:DECLARATION])
+GOTO: from 80 to 3 with T:DECLARATION.
 === STEP 48 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86])
-SHIFT: from 86 to 13 with t:Write-Host.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:DECLARATION, 3])
+REDUCE: use production rule T:LHS->T:DECLARATION.
 === STEP 49 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, t:Write-Host, 13])
-SHIFT: from 13 to 44 with t:string_constant.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS])
+GOTO: from 80 to 6 with T:LHS.
 === STEP 50 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, t:Write-Host, 13, t:string_constant, 44])
-REDUCE: use production rule T:WRITE'->t:string_constant.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6])
+SHIFT: from 6 to 32 with t:=.
 === STEP 51 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, t:Write-Host, 13, T:WRITE'])
-GOTO: from 13 to 41 with T:WRITE'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, t:=, 32])
+REDUCE: use production rule T:ASSIGNMENT_OPERATOR->t:=.
 === STEP 52 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, t:Write-Host, 13, T:WRITE', 41])
-REDUCE: use production rule T:WRITE->t:Write-Host T:WRITE'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR])
+GOTO: from 6 to 31 with T:ASSIGNMENT_OPERATOR.
 === STEP 53 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:WRITE])
-GOTO: from 86 to 14 with T:WRITE.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31])
+SHIFT: from 31 to 41 with t:id.
 === STEP 54 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:WRITE, 14])
-REDUCE: use production rule T:STATEMENT'->T:WRITE.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
 === STEP 55 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT'])
-GOTO: from 86 to 15 with T:STATEMENT'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND])
+GOTO: from 31 to 9 with T:OPERAND.
 === STEP 56 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT', 15])
-SHIFT: from 15 to 45 with t:;.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9])
+REDUCE: use production rule T:OPERATION''->S:epsilon.
 === STEP 57 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT', 15, t:;, 45])
-REDUCE: use production rule T:STATEMENT->T:STATEMENT' t:;.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION''])
+GOTO: from 9 to 33 with T:OPERATION''.
 === STEP 58 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT])
-GOTO: from 86 to 20 with T:STATEMENT.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION'', 33])
+REDUCE: use production rule T:OPERATION'->T:OPERAND T:OPERATION''.
 === STEP 59 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT, 20])
-REDUCE: use production rule T:STATEMENT_LIST'->S:epsilon.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION'])
+GOTO: from 31 to 10 with T:OPERATION'.
 === STEP 60 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT, 20, T:STATEMENT_LIST'])
-GOTO: from 20 to 48 with T:STATEMENT_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION', 10])
+REDUCE: use production rule T:OPERATION->T:OPERATION'.
 === STEP 61 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT, 20, T:STATEMENT_LIST', 48])
-REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION])
+GOTO: from 31 to 54 with T:OPERATION.
 === STEP 62 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT_LIST'])
-GOTO: from 86 to 21 with T:STATEMENT_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION, 54])
+REDUCE: use production rule T:RHS->T:OPERATION.
 === STEP 63 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT_LIST', 21])
-REDUCE: use production rule T:STATEMENT_LIST->T:STATEMENT_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS])
+GOTO: from 31 to 52 with T:RHS.
 === STEP 64 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT_LIST])
-GOTO: from 86 to 92 with T:STATEMENT_LIST.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS, 52])
+REDUCE: use production rule T:ASSIGNMENT->T:LHS T:ASSIGNMENT_OPERATOR T:RHS.
 === STEP 65 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT_LIST, 92])
-SHIFT: from 92 to 98 with t:}.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:ASSIGNMENT])
+GOTO: from 80 to 7 with T:ASSIGNMENT.
 === STEP 66 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, t:if, 16, t:(, 46, T:CONDITION, 58, t:), 71, t:{, 86, T:STATEMENT_LIST, 92, t:}, 98])
-REDUCE: use production rule T:IF->t:if t:( T:CONDITION t:) t:{ T:STATEMENT_LIST t:}.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:ASSIGNMENT, 7])
+REDUCE: use production rule T:STATEMENT'->T:ASSIGNMENT.
 === STEP 67 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:IF])
-GOTO: from 81 to 17 with T:IF.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT'])
+GOTO: from 80 to 15 with T:STATEMENT'.
 === STEP 68 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:IF, 17])
-REDUCE: use production rule T:STATEMENT->T:IF.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT', 15])
+SHIFT: from 15 to 44 with t:;.
 === STEP 69 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:STATEMENT])
-GOTO: from 81 to 20 with T:STATEMENT.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT', 15, t:;, 44])
+REDUCE: use production rule T:STATEMENT->T:STATEMENT' t:;.
 === STEP 70 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:STATEMENT, 20])
-REDUCE: use production rule T:STATEMENT_LIST'->S:epsilon.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT])
+GOTO: from 80 to 20 with T:STATEMENT.
 === STEP 71 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:STATEMENT, 20, T:STATEMENT_LIST'])
-GOTO: from 20 to 48 with T:STATEMENT_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20])
+SHIFT: from 20 to 2 with t:[.
 === STEP 72 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:STATEMENT, 20, T:STATEMENT_LIST', 48])
-REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, t:[, 2])
+SHIFT: from 2 to 26 with t:int.
 === STEP 73 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:STATEMENT_LIST'])
-GOTO: from 81 to 21 with T:STATEMENT_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, t:[, 2, t:int, 26])
+REDUCE: use production rule T:TYPE->t:int.
 === STEP 74 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:STATEMENT_LIST', 21])
-REDUCE: use production rule T:STATEMENT_LIST->T:STATEMENT_LIST'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, t:[, 2, T:TYPE])
+GOTO: from 2 to 24 with T:TYPE.
 === STEP 75 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:STATEMENT_LIST])
-GOTO: from 81 to 90 with T:STATEMENT_LIST.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, t:[, 2, T:TYPE, 24])
+SHIFT: from 24 to 49 with t:].
 === STEP 76 ===
--> STACK STATE: deque([0, t:param, 23, t:(, 49, T:FUNCTION_DECLARATION_LIST, 64, t:), 81, T:STATEMENT_LIST, 90])
-REDUCE: use production rule T:PROGRAM->t:param t:( T:FUNCTION_DECLARATION_LIST t:) T:STATEMENT_LIST.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, t:[, 2, T:TYPE, 24, t:], 49])
+SHIFT: from 49 to 66 with t:id.
 === STEP 77 ===
--> STACK STATE: deque([0, T:PROGRAM])
-GOTO: from 0 to 24 with T:PROGRAM.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, t:[, 2, T:TYPE, 24, t:], 49, t:id, 66])
+REDUCE: use production rule T:DECLARATION->t:[ T:TYPE t:] t:id.
 === STEP 78 ===
--> STACK STATE: deque([0, T:PROGRAM, 24])
-REDUCE: use production rule T:PROGRAM'->T:PROGRAM.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:DECLARATION])
+GOTO: from 20 to 3 with T:DECLARATION.
 === STEP 79 ===
--> STACK STATE: deque([0, T:PROGRAM'])
-GOTO: from 0 to 1 with T:PROGRAM'.
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:DECLARATION, 3])
+REDUCE: use production rule T:LHS->T:DECLARATION.
 === STEP 80 ===
--> STACK STATE: deque([0, T:PROGRAM', 1])
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS])
+GOTO: from 20 to 6 with T:LHS.
+=== STEP 81 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6])
+SHIFT: from 6 to 32 with t:=.
+=== STEP 82 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, t:=, 32])
+REDUCE: use production rule T:ASSIGNMENT_OPERATOR->t:=.
+=== STEP 83 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR])
+GOTO: from 6 to 31 with T:ASSIGNMENT_OPERATOR.
+=== STEP 84 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31])
+SHIFT: from 31 to 41 with t:id.
+=== STEP 85 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 86 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND])
+GOTO: from 31 to 9 with T:OPERAND.
+=== STEP 87 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9])
+REDUCE: use production rule T:OPERATION''->S:epsilon.
+=== STEP 88 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION''])
+GOTO: from 9 to 33 with T:OPERATION''.
+=== STEP 89 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION'', 33])
+REDUCE: use production rule T:OPERATION'->T:OPERAND T:OPERATION''.
+=== STEP 90 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION'])
+GOTO: from 31 to 10 with T:OPERATION'.
+=== STEP 91 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION', 10])
+REDUCE: use production rule T:OPERATION->T:OPERATION'.
+=== STEP 92 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION])
+GOTO: from 31 to 54 with T:OPERATION.
+=== STEP 93 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION, 54])
+REDUCE: use production rule T:RHS->T:OPERATION.
+=== STEP 94 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS])
+GOTO: from 31 to 52 with T:RHS.
+=== STEP 95 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS, 52])
+REDUCE: use production rule T:ASSIGNMENT->T:LHS T:ASSIGNMENT_OPERATOR T:RHS.
+=== STEP 96 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:ASSIGNMENT])
+GOTO: from 20 to 7 with T:ASSIGNMENT.
+=== STEP 97 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:ASSIGNMENT, 7])
+REDUCE: use production rule T:STATEMENT'->T:ASSIGNMENT.
+=== STEP 98 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT'])
+GOTO: from 20 to 15 with T:STATEMENT'.
+=== STEP 99 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT', 15])
+SHIFT: from 15 to 44 with t:;.
+=== STEP 100 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT', 15, t:;, 44])
+REDUCE: use production rule T:STATEMENT->T:STATEMENT' t:;.
+=== STEP 101 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT])
+GOTO: from 20 to 20 with T:STATEMENT.
+=== STEP 102 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20])
+SHIFT: from 20 to 16 with t:if.
+=== STEP 103 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16])
+SHIFT: from 16 to 45 with t:(.
+=== STEP 104 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45])
+SHIFT: from 45 to 41 with t:id.
+=== STEP 105 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 106 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND])
+GOTO: from 45 to 58 with T:OPERAND.
+=== STEP 107 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58])
+SHIFT: from 58 to 72 with t:-lt.
+=== STEP 108 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, t:-lt, 72])
+REDUCE: use production rule T:EQUALITY_OPERATOR->t:-lt.
+=== STEP 109 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR])
+GOTO: from 58 to 71 with T:EQUALITY_OPERATOR.
+=== STEP 110 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71])
+SHIFT: from 71 to 41 with t:id.
+=== STEP 111 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 112 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, T:OPERAND])
+GOTO: from 71 to 86 with T:OPERAND.
+=== STEP 113 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, T:OPERAND, 86])
+REDUCE: use production rule T:CONDITION''->T:OPERAND T:EQUALITY_OPERATOR T:OPERAND.
+=== STEP 114 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION''])
+GOTO: from 45 to 59 with T:CONDITION''.
+=== STEP 115 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION'', 59])
+REDUCE: use production rule T:CONDITION'->T:CONDITION''.
+=== STEP 116 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION'])
+GOTO: from 45 to 61 with T:CONDITION'.
+=== STEP 117 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION', 61])
+REDUCE: use production rule T:CONDITION->T:CONDITION'.
+=== STEP 118 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION])
+GOTO: from 45 to 57 with T:CONDITION.
+=== STEP 119 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57])
+SHIFT: from 57 to 70 with t:).
+=== STEP 120 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70])
+SHIFT: from 70 to 85 with t:{.
+=== STEP 121 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85])
+SHIFT: from 85 to 5 with t:id.
+=== STEP 122 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, t:id, 5])
+REDUCE: use production rule T:LHS->t:id.
+=== STEP 123 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS])
+GOTO: from 85 to 6 with T:LHS.
+=== STEP 124 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6])
+SHIFT: from 6 to 32 with t:=.
+=== STEP 125 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, t:=, 32])
+REDUCE: use production rule T:ASSIGNMENT_OPERATOR->t:=.
+=== STEP 126 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR])
+GOTO: from 6 to 31 with T:ASSIGNMENT_OPERATOR.
+=== STEP 127 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31])
+SHIFT: from 31 to 41 with t:id.
+=== STEP 128 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 129 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND])
+GOTO: from 31 to 9 with T:OPERAND.
+=== STEP 130 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9])
+REDUCE: use production rule T:OPERATION''->S:epsilon.
+=== STEP 131 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION''])
+GOTO: from 9 to 33 with T:OPERATION''.
+=== STEP 132 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION'', 33])
+REDUCE: use production rule T:OPERATION'->T:OPERAND T:OPERATION''.
+=== STEP 133 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION'])
+GOTO: from 31 to 10 with T:OPERATION'.
+=== STEP 134 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION', 10])
+REDUCE: use production rule T:OPERATION->T:OPERATION'.
+=== STEP 135 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION])
+GOTO: from 31 to 54 with T:OPERATION.
+=== STEP 136 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION, 54])
+REDUCE: use production rule T:RHS->T:OPERATION.
+=== STEP 137 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS])
+GOTO: from 31 to 52 with T:RHS.
+=== STEP 138 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS, 52])
+REDUCE: use production rule T:ASSIGNMENT->T:LHS T:ASSIGNMENT_OPERATOR T:RHS.
+=== STEP 139 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:ASSIGNMENT])
+GOTO: from 85 to 7 with T:ASSIGNMENT.
+=== STEP 140 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:ASSIGNMENT, 7])
+REDUCE: use production rule T:STATEMENT'->T:ASSIGNMENT.
+=== STEP 141 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT'])
+GOTO: from 85 to 15 with T:STATEMENT'.
+=== STEP 142 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT', 15])
+SHIFT: from 15 to 44 with t:;.
+=== STEP 143 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT', 15, t:;, 44])
+REDUCE: use production rule T:STATEMENT->T:STATEMENT' t:;.
+=== STEP 144 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT])
+GOTO: from 85 to 20 with T:STATEMENT.
+=== STEP 145 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20])
+REDUCE: use production rule T:STATEMENT_LIST'->S:epsilon.
+=== STEP 146 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 147 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 148 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST'])
+GOTO: from 85 to 21 with T:STATEMENT_LIST'.
+=== STEP 149 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST', 21])
+REDUCE: use production rule T:STATEMENT_LIST->T:STATEMENT_LIST'.
+=== STEP 150 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST])
+GOTO: from 85 to 91 with T:STATEMENT_LIST.
+=== STEP 151 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST, 91])
+SHIFT: from 91 to 97 with t:}.
+=== STEP 152 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST, 91, t:}, 97])
+REDUCE: use production rule T:IF->t:if t:( T:CONDITION t:) t:{ T:STATEMENT_LIST t:}.
+=== STEP 153 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:IF])
+GOTO: from 20 to 17 with T:IF.
+=== STEP 154 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:IF, 17])
+REDUCE: use production rule T:STATEMENT->T:IF.
+=== STEP 155 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT])
+GOTO: from 20 to 20 with T:STATEMENT.
+=== STEP 156 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20])
+SHIFT: from 20 to 16 with t:if.
+=== STEP 157 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16])
+SHIFT: from 16 to 45 with t:(.
+=== STEP 158 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45])
+SHIFT: from 45 to 41 with t:id.
+=== STEP 159 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 160 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND])
+GOTO: from 45 to 58 with T:OPERAND.
+=== STEP 161 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58])
+SHIFT: from 58 to 72 with t:-lt.
+=== STEP 162 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, t:-lt, 72])
+REDUCE: use production rule T:EQUALITY_OPERATOR->t:-lt.
+=== STEP 163 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR])
+GOTO: from 58 to 71 with T:EQUALITY_OPERATOR.
+=== STEP 164 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71])
+SHIFT: from 71 to 41 with t:id.
+=== STEP 165 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 166 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, T:OPERAND])
+GOTO: from 71 to 86 with T:OPERAND.
+=== STEP 167 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, T:OPERAND, 86])
+REDUCE: use production rule T:CONDITION''->T:OPERAND T:EQUALITY_OPERATOR T:OPERAND.
+=== STEP 168 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION''])
+GOTO: from 45 to 59 with T:CONDITION''.
+=== STEP 169 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION'', 59])
+REDUCE: use production rule T:CONDITION'->T:CONDITION''.
+=== STEP 170 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION'])
+GOTO: from 45 to 61 with T:CONDITION'.
+=== STEP 171 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION', 61])
+REDUCE: use production rule T:CONDITION->T:CONDITION'.
+=== STEP 172 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION])
+GOTO: from 45 to 57 with T:CONDITION.
+=== STEP 173 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57])
+SHIFT: from 57 to 70 with t:).
+=== STEP 174 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70])
+SHIFT: from 70 to 85 with t:{.
+=== STEP 175 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85])
+SHIFT: from 85 to 5 with t:id.
+=== STEP 176 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, t:id, 5])
+REDUCE: use production rule T:LHS->t:id.
+=== STEP 177 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS])
+GOTO: from 85 to 6 with T:LHS.
+=== STEP 178 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6])
+SHIFT: from 6 to 32 with t:=.
+=== STEP 179 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, t:=, 32])
+REDUCE: use production rule T:ASSIGNMENT_OPERATOR->t:=.
+=== STEP 180 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR])
+GOTO: from 6 to 31 with T:ASSIGNMENT_OPERATOR.
+=== STEP 181 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31])
+SHIFT: from 31 to 41 with t:id.
+=== STEP 182 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 183 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND])
+GOTO: from 31 to 9 with T:OPERAND.
+=== STEP 184 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9])
+REDUCE: use production rule T:OPERATION''->S:epsilon.
+=== STEP 185 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION''])
+GOTO: from 9 to 33 with T:OPERATION''.
+=== STEP 186 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION'', 33])
+REDUCE: use production rule T:OPERATION'->T:OPERAND T:OPERATION''.
+=== STEP 187 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION'])
+GOTO: from 31 to 10 with T:OPERATION'.
+=== STEP 188 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION', 10])
+REDUCE: use production rule T:OPERATION->T:OPERATION'.
+=== STEP 189 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION])
+GOTO: from 31 to 54 with T:OPERATION.
+=== STEP 190 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION, 54])
+REDUCE: use production rule T:RHS->T:OPERATION.
+=== STEP 191 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS])
+GOTO: from 31 to 52 with T:RHS.
+=== STEP 192 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS, 52])
+REDUCE: use production rule T:ASSIGNMENT->T:LHS T:ASSIGNMENT_OPERATOR T:RHS.
+=== STEP 193 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:ASSIGNMENT])
+GOTO: from 85 to 7 with T:ASSIGNMENT.
+=== STEP 194 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:ASSIGNMENT, 7])
+REDUCE: use production rule T:STATEMENT'->T:ASSIGNMENT.
+=== STEP 195 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT'])
+GOTO: from 85 to 15 with T:STATEMENT'.
+=== STEP 196 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT', 15])
+SHIFT: from 15 to 44 with t:;.
+=== STEP 197 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT', 15, t:;, 44])
+REDUCE: use production rule T:STATEMENT->T:STATEMENT' t:;.
+=== STEP 198 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT])
+GOTO: from 85 to 20 with T:STATEMENT.
+=== STEP 199 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20])
+REDUCE: use production rule T:STATEMENT_LIST'->S:epsilon.
+=== STEP 200 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 201 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 202 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST'])
+GOTO: from 85 to 21 with T:STATEMENT_LIST'.
+=== STEP 203 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST', 21])
+REDUCE: use production rule T:STATEMENT_LIST->T:STATEMENT_LIST'.
+=== STEP 204 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST])
+GOTO: from 85 to 91 with T:STATEMENT_LIST.
+=== STEP 205 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST, 91])
+SHIFT: from 91 to 97 with t:}.
+=== STEP 206 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST, 91, t:}, 97])
+REDUCE: use production rule T:IF->t:if t:( T:CONDITION t:) t:{ T:STATEMENT_LIST t:}.
+=== STEP 207 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:IF])
+GOTO: from 20 to 17 with T:IF.
+=== STEP 208 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:IF, 17])
+REDUCE: use production rule T:STATEMENT->T:IF.
+=== STEP 209 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT])
+GOTO: from 20 to 20 with T:STATEMENT.
+=== STEP 210 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20])
+SHIFT: from 20 to 16 with t:if.
+=== STEP 211 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16])
+SHIFT: from 16 to 45 with t:(.
+=== STEP 212 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45])
+SHIFT: from 45 to 41 with t:id.
+=== STEP 213 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 214 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND])
+GOTO: from 45 to 58 with T:OPERAND.
+=== STEP 215 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58])
+SHIFT: from 58 to 77 with t:-gt.
+=== STEP 216 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, t:-gt, 77])
+REDUCE: use production rule T:EQUALITY_OPERATOR->t:-gt.
+=== STEP 217 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR])
+GOTO: from 58 to 71 with T:EQUALITY_OPERATOR.
+=== STEP 218 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71])
+SHIFT: from 71 to 41 with t:id.
+=== STEP 219 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 220 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, T:OPERAND])
+GOTO: from 71 to 86 with T:OPERAND.
+=== STEP 221 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, T:OPERAND, 86])
+REDUCE: use production rule T:CONDITION''->T:OPERAND T:EQUALITY_OPERATOR T:OPERAND.
+=== STEP 222 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION''])
+GOTO: from 45 to 59 with T:CONDITION''.
+=== STEP 223 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION'', 59])
+REDUCE: use production rule T:CONDITION'->T:CONDITION''.
+=== STEP 224 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION'])
+GOTO: from 45 to 61 with T:CONDITION'.
+=== STEP 225 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION', 61])
+REDUCE: use production rule T:CONDITION->T:CONDITION'.
+=== STEP 226 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION])
+GOTO: from 45 to 57 with T:CONDITION.
+=== STEP 227 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57])
+SHIFT: from 57 to 70 with t:).
+=== STEP 228 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70])
+SHIFT: from 70 to 85 with t:{.
+=== STEP 229 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85])
+SHIFT: from 85 to 5 with t:id.
+=== STEP 230 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, t:id, 5])
+REDUCE: use production rule T:LHS->t:id.
+=== STEP 231 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS])
+GOTO: from 85 to 6 with T:LHS.
+=== STEP 232 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6])
+SHIFT: from 6 to 32 with t:=.
+=== STEP 233 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, t:=, 32])
+REDUCE: use production rule T:ASSIGNMENT_OPERATOR->t:=.
+=== STEP 234 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR])
+GOTO: from 6 to 31 with T:ASSIGNMENT_OPERATOR.
+=== STEP 235 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31])
+SHIFT: from 31 to 41 with t:id.
+=== STEP 236 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 237 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND])
+GOTO: from 31 to 9 with T:OPERAND.
+=== STEP 238 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9])
+REDUCE: use production rule T:OPERATION''->S:epsilon.
+=== STEP 239 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION''])
+GOTO: from 9 to 33 with T:OPERATION''.
+=== STEP 240 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION'', 33])
+REDUCE: use production rule T:OPERATION'->T:OPERAND T:OPERATION''.
+=== STEP 241 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION'])
+GOTO: from 31 to 10 with T:OPERATION'.
+=== STEP 242 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION', 10])
+REDUCE: use production rule T:OPERATION->T:OPERATION'.
+=== STEP 243 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION])
+GOTO: from 31 to 54 with T:OPERATION.
+=== STEP 244 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION, 54])
+REDUCE: use production rule T:RHS->T:OPERATION.
+=== STEP 245 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS])
+GOTO: from 31 to 52 with T:RHS.
+=== STEP 246 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS, 52])
+REDUCE: use production rule T:ASSIGNMENT->T:LHS T:ASSIGNMENT_OPERATOR T:RHS.
+=== STEP 247 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:ASSIGNMENT])
+GOTO: from 85 to 7 with T:ASSIGNMENT.
+=== STEP 248 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:ASSIGNMENT, 7])
+REDUCE: use production rule T:STATEMENT'->T:ASSIGNMENT.
+=== STEP 249 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT'])
+GOTO: from 85 to 15 with T:STATEMENT'.
+=== STEP 250 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT', 15])
+SHIFT: from 15 to 44 with t:;.
+=== STEP 251 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT', 15, t:;, 44])
+REDUCE: use production rule T:STATEMENT->T:STATEMENT' t:;.
+=== STEP 252 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT])
+GOTO: from 85 to 20 with T:STATEMENT.
+=== STEP 253 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20])
+REDUCE: use production rule T:STATEMENT_LIST'->S:epsilon.
+=== STEP 254 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 255 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 256 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST'])
+GOTO: from 85 to 21 with T:STATEMENT_LIST'.
+=== STEP 257 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST', 21])
+REDUCE: use production rule T:STATEMENT_LIST->T:STATEMENT_LIST'.
+=== STEP 258 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST])
+GOTO: from 85 to 91 with T:STATEMENT_LIST.
+=== STEP 259 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST, 91])
+SHIFT: from 91 to 97 with t:}.
+=== STEP 260 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST, 91, t:}, 97])
+REDUCE: use production rule T:IF->t:if t:( T:CONDITION t:) t:{ T:STATEMENT_LIST t:}.
+=== STEP 261 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:IF])
+GOTO: from 20 to 17 with T:IF.
+=== STEP 262 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:IF, 17])
+REDUCE: use production rule T:STATEMENT->T:IF.
+=== STEP 263 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT])
+GOTO: from 20 to 20 with T:STATEMENT.
+=== STEP 264 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20])
+SHIFT: from 20 to 16 with t:if.
+=== STEP 265 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16])
+SHIFT: from 16 to 45 with t:(.
+=== STEP 266 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45])
+SHIFT: from 45 to 41 with t:id.
+=== STEP 267 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 268 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND])
+GOTO: from 45 to 58 with T:OPERAND.
+=== STEP 269 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58])
+SHIFT: from 58 to 77 with t:-gt.
+=== STEP 270 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, t:-gt, 77])
+REDUCE: use production rule T:EQUALITY_OPERATOR->t:-gt.
+=== STEP 271 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR])
+GOTO: from 58 to 71 with T:EQUALITY_OPERATOR.
+=== STEP 272 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71])
+SHIFT: from 71 to 41 with t:id.
+=== STEP 273 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 274 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, T:OPERAND])
+GOTO: from 71 to 86 with T:OPERAND.
+=== STEP 275 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:OPERAND, 58, T:EQUALITY_OPERATOR, 71, T:OPERAND, 86])
+REDUCE: use production rule T:CONDITION''->T:OPERAND T:EQUALITY_OPERATOR T:OPERAND.
+=== STEP 276 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION''])
+GOTO: from 45 to 59 with T:CONDITION''.
+=== STEP 277 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION'', 59])
+REDUCE: use production rule T:CONDITION'->T:CONDITION''.
+=== STEP 278 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION'])
+GOTO: from 45 to 61 with T:CONDITION'.
+=== STEP 279 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION', 61])
+REDUCE: use production rule T:CONDITION->T:CONDITION'.
+=== STEP 280 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION])
+GOTO: from 45 to 57 with T:CONDITION.
+=== STEP 281 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57])
+SHIFT: from 57 to 70 with t:).
+=== STEP 282 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70])
+SHIFT: from 70 to 85 with t:{.
+=== STEP 283 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85])
+SHIFT: from 85 to 5 with t:id.
+=== STEP 284 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, t:id, 5])
+REDUCE: use production rule T:LHS->t:id.
+=== STEP 285 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS])
+GOTO: from 85 to 6 with T:LHS.
+=== STEP 286 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6])
+SHIFT: from 6 to 32 with t:=.
+=== STEP 287 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, t:=, 32])
+REDUCE: use production rule T:ASSIGNMENT_OPERATOR->t:=.
+=== STEP 288 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR])
+GOTO: from 6 to 31 with T:ASSIGNMENT_OPERATOR.
+=== STEP 289 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31])
+SHIFT: from 31 to 41 with t:id.
+=== STEP 290 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 291 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND])
+GOTO: from 31 to 9 with T:OPERAND.
+=== STEP 292 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9])
+REDUCE: use production rule T:OPERATION''->S:epsilon.
+=== STEP 293 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION''])
+GOTO: from 9 to 33 with T:OPERATION''.
+=== STEP 294 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERAND, 9, T:OPERATION'', 33])
+REDUCE: use production rule T:OPERATION'->T:OPERAND T:OPERATION''.
+=== STEP 295 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION'])
+GOTO: from 31 to 10 with T:OPERATION'.
+=== STEP 296 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION', 10])
+REDUCE: use production rule T:OPERATION->T:OPERATION'.
+=== STEP 297 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION])
+GOTO: from 31 to 54 with T:OPERATION.
+=== STEP 298 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:OPERATION, 54])
+REDUCE: use production rule T:RHS->T:OPERATION.
+=== STEP 299 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS])
+GOTO: from 31 to 52 with T:RHS.
+=== STEP 300 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:LHS, 6, T:ASSIGNMENT_OPERATOR, 31, T:RHS, 52])
+REDUCE: use production rule T:ASSIGNMENT->T:LHS T:ASSIGNMENT_OPERATOR T:RHS.
+=== STEP 301 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:ASSIGNMENT])
+GOTO: from 85 to 7 with T:ASSIGNMENT.
+=== STEP 302 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:ASSIGNMENT, 7])
+REDUCE: use production rule T:STATEMENT'->T:ASSIGNMENT.
+=== STEP 303 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT'])
+GOTO: from 85 to 15 with T:STATEMENT'.
+=== STEP 304 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT', 15])
+SHIFT: from 15 to 44 with t:;.
+=== STEP 305 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT', 15, t:;, 44])
+REDUCE: use production rule T:STATEMENT->T:STATEMENT' t:;.
+=== STEP 306 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT])
+GOTO: from 85 to 20 with T:STATEMENT.
+=== STEP 307 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20])
+REDUCE: use production rule T:STATEMENT_LIST'->S:epsilon.
+=== STEP 308 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 309 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 310 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST'])
+GOTO: from 85 to 21 with T:STATEMENT_LIST'.
+=== STEP 311 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST', 21])
+REDUCE: use production rule T:STATEMENT_LIST->T:STATEMENT_LIST'.
+=== STEP 312 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST])
+GOTO: from 85 to 91 with T:STATEMENT_LIST.
+=== STEP 313 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST, 91])
+SHIFT: from 91 to 97 with t:}.
+=== STEP 314 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:if, 16, t:(, 45, T:CONDITION, 57, t:), 70, t:{, 85, T:STATEMENT_LIST, 91, t:}, 97])
+REDUCE: use production rule T:IF->t:if t:( T:CONDITION t:) t:{ T:STATEMENT_LIST t:}.
+=== STEP 315 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:IF])
+GOTO: from 20 to 17 with T:IF.
+=== STEP 316 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:IF, 17])
+REDUCE: use production rule T:STATEMENT->T:IF.
+=== STEP 317 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT])
+GOTO: from 20 to 20 with T:STATEMENT.
+=== STEP 318 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20])
+SHIFT: from 20 to 13 with t:Write-Host.
+=== STEP 319 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13])
+SHIFT: from 13 to 41 with t:id.
+=== STEP 320 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 321 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, T:OPERAND])
+GOTO: from 13 to 42 with T:OPERAND.
+=== STEP 322 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, T:OPERAND, 42])
+REDUCE: use production rule T:WRITE'->T:OPERAND.
+=== STEP 323 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, T:WRITE'])
+GOTO: from 13 to 40 with T:WRITE'.
+=== STEP 324 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, T:WRITE', 40])
+REDUCE: use production rule T:WRITE->t:Write-Host T:WRITE'.
+=== STEP 325 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:WRITE])
+GOTO: from 20 to 14 with T:WRITE.
+=== STEP 326 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:WRITE, 14])
+REDUCE: use production rule T:STATEMENT'->T:WRITE.
+=== STEP 327 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT'])
+GOTO: from 20 to 15 with T:STATEMENT'.
+=== STEP 328 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT', 15])
+SHIFT: from 15 to 44 with t:;.
+=== STEP 329 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT', 15, t:;, 44])
+REDUCE: use production rule T:STATEMENT->T:STATEMENT' t:;.
+=== STEP 330 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT])
+GOTO: from 20 to 20 with T:STATEMENT.
+=== STEP 331 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20])
+SHIFT: from 20 to 13 with t:Write-Host.
+=== STEP 332 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13])
+SHIFT: from 13 to 41 with t:id.
+=== STEP 333 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, t:id, 41])
+REDUCE: use production rule T:OPERAND->t:id.
+=== STEP 334 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, T:OPERAND])
+GOTO: from 13 to 42 with T:OPERAND.
+=== STEP 335 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, T:OPERAND, 42])
+REDUCE: use production rule T:WRITE'->T:OPERAND.
+=== STEP 336 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, T:WRITE'])
+GOTO: from 13 to 40 with T:WRITE'.
+=== STEP 337 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, t:Write-Host, 13, T:WRITE', 40])
+REDUCE: use production rule T:WRITE->t:Write-Host T:WRITE'.
+=== STEP 338 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:WRITE])
+GOTO: from 20 to 14 with T:WRITE.
+=== STEP 339 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:WRITE, 14])
+REDUCE: use production rule T:STATEMENT'->T:WRITE.
+=== STEP 340 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT'])
+GOTO: from 20 to 15 with T:STATEMENT'.
+=== STEP 341 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT', 15])
+SHIFT: from 15 to 44 with t:;.
+=== STEP 342 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT', 15, t:;, 44])
+REDUCE: use production rule T:STATEMENT->T:STATEMENT' t:;.
+=== STEP 343 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT])
+GOTO: from 20 to 20 with T:STATEMENT.
+=== STEP 344 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20])
+REDUCE: use production rule T:STATEMENT_LIST'->S:epsilon.
+=== STEP 345 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 346 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 347 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 348 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 349 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 350 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 351 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 352 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 353 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 354 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 355 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 356 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 357 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 358 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 359 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT_LIST'])
+GOTO: from 20 to 47 with T:STATEMENT_LIST'.
+=== STEP 360 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT, 20, T:STATEMENT_LIST', 47])
+REDUCE: use production rule T:STATEMENT_LIST'->T:STATEMENT T:STATEMENT_LIST'.
+=== STEP 361 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT_LIST'])
+GOTO: from 80 to 21 with T:STATEMENT_LIST'.
+=== STEP 362 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT_LIST', 21])
+REDUCE: use production rule T:STATEMENT_LIST->T:STATEMENT_LIST'.
+=== STEP 363 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT_LIST])
+GOTO: from 80 to 89 with T:STATEMENT_LIST.
+=== STEP 364 ===
+-> STACK STATE: deque([0, t:param, 23, t:(, 48, T:FUNCTION_DECLARATION_LIST, 63, t:), 80, T:STATEMENT_LIST, 89])
+REDUCE: use production rule T:PROGRAM->t:param t:( T:FUNCTION_DECLARATION_LIST t:) T:STATEMENT_LIST.
+=== STEP 365 ===
+-> STACK STATE: deque([0, T:PROGRAM])
+GOTO: from 0 to 1 with T:PROGRAM.
+=== STEP 366 ===
+-> STACK STATE: deque([0, T:PROGRAM, 1])
 END: from 1 to ACCEPTED with S:$
